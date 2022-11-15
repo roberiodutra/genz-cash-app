@@ -15,7 +15,7 @@ Users.init({
     primaryKey: true,
     autoIncrement: true,
   },
-  username: {
+  value: {
     type: STRING,
     allowNull: false,
   },

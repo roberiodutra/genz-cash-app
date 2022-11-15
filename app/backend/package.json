@@ -35,6 +35,7 @@
     "mocha": "^10.1.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
+    "sequelize-cli": "^6.5.2",
     "sinon": "^14.0.2",
     "sucrase": "^3.28.0",
     "ts-node": "^10.9.1",
@@ -51,7 +52,6 @@
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.8.0",
     "sequelize": "^6.25.5",
-    "sequelize-cli": "^6.5.2",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.6.0",
     "zod": "^3.19.1"
