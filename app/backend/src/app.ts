@@ -2,7 +2,6 @@ import express from "express";
 import 'express-async-errors';
 import cors from 'cors';
 import Endpoints from './routes';
-import connectToDatabase from "./database/models/";
 import ErrorHandler from "./middlewares/ErrorHandler";
 
 class App {
@@ -11,17 +10,12 @@ class App {
   public constructor() {
     this.app = express();
     this.config();
-    this.database();
     this.routes();
   }
 
   private config() {
     this.app.use(express.json());
     this.app.use(cors());
-  }
-
-  private database() {
-    connectToDatabase.sync().then(() => console.log("foi"));
   }
 
   private routes() {
