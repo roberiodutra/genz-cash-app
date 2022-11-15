@@ -38,3 +38,5 @@ class BaseService {
     await this.model.delete(id);
   }
 }
+
+export default BaseService;
