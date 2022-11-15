@@ -19,8 +19,8 @@ Transactions.init({
     allowNull: false,
   },
   createdAt: {
-    field: 'created_at',
     type: DATE,
+    allowNull: false,
   }
 }, {
   sequelize: db,
