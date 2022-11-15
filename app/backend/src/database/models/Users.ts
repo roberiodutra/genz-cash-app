@@ -28,5 +28,3 @@ Users.init({
   modelName: 'Users',
   timestamps: false,
 });
-
-Users.hasOne(Accounts, { foreignKey: 'accountId' });
