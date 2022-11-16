@@ -1,3 +1,5 @@
+import { StatusCodes } from "http-status-codes";
+
 export enum ErrorTypes {
   UserExists = 'UserExists',
   UserNotFound = 'UserNotFound',
@@ -18,22 +20,22 @@ type catalog = {
 export const ErrorCatalog: catalog = {
   UserExists: {
     message: 'User Already Exists',
-    code: 409,
+    code: StatusCodes.CONFLICT,
   },
   UserNotFound: {
     message: 'User Not found',
-    code: 404,
+    code: StatusCodes.NOT_FOUND,
   },
   WrongPassword: {
     message: 'Wrong Password',
-    code: 401,
+    code: StatusCodes.UNAUTHORIZED,
   },
   TokenNotFound: {
     message: 'Token Not Found',
-    code: 404,
+    code: StatusCodes.NOT_FOUND,
   },
   InvalidToken: {
     message: 'Invalid Token',
-    code: 401,
+    code: StatusCodes.UNAUTHORIZED,
   },
 };
