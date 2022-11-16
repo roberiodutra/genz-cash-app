@@ -11,7 +11,7 @@ const AuthToken = (req: Request, res: Response, next: NextFunction) => {
 
   verify(token, SECRET, (error, user) => {
     if (error) throw new Error(ErrorTypes.InvalidToken);
-    res.locals.user = user;
+    return res.locals.user = user;
   });
   next();
 };
