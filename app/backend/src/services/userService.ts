@@ -5,6 +5,7 @@ import { IWrite } from "../interfaces/IWrite";
 import { ErrorTypes } from "../helpers/ErrorCatalog";
 import Bcrypt from "../helpers/Bcrypt";
 import tokenGenerator from "../helpers/TokenGenerator";
+import { UserSchema } from "../types/userType";
 
 class UserService implements IRead<IUser>, IWrite<IUser> {
   constructor(private model = Users) { }
@@ -21,19 +22,27 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
       username,
       password,
     };
-    const { token } = tokenGenerator(userInfo);
+    const token = tokenGenerator(userInfo);
 
-    return ({ ...userInfo, token });
+    return { ...userInfo, ...token };
   }
 
   public async create(username: string, password: string) {
+    const parsed = UserSchema.safeParse({ username, password });
+    if (!parsed.success) throw parsed.error;
+
     const userExists = await this.model.findOne({ where: { username } });
     if (userExists) throw new Error(ErrorTypes.UserExists);
     const { dataValues } = await this.model.create({ username, password });
-    console.log('🚀 ~ UserService ~ create ~ dataValues', dataValues);
+
+    const userInfo = {
+      id: dataValues.id,
+      username,
+      password,
+    };
 
     const token = tokenGenerator(dataValues);
-    return { ...dataValues, ...token };
+    return { ...userInfo, ...token };
   }
 
   public async getAll() {

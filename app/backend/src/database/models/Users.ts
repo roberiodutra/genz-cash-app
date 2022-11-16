@@ -1,4 +1,4 @@
-import { INTEGER, STRING, Model, Optional } from 'sequelize';
+import { INTEGER, STRING, Model } from 'sequelize';
 import db from '.';
 import Bcrypt from '../../helpers/Bcrypt';
 import Accounts from './Accounts';
