@@ -1,9 +1,8 @@
 import { Router } from 'express';
-import userController from '../domain/cases/login/controllers/userController';
+import userRouter from './userRouter';
 
 const Endpoints = Router();
 
-Endpoints.post('/', userController.create);
-Endpoints.get('/', userController.getAll);
+Endpoints.use('/', userRouter);
 
 export default Endpoints;
