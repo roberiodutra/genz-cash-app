@@ -1,9 +1,16 @@
-import { INTEGER, STRING, Model } from 'sequelize';
+import { INTEGER, DECIMAL, Model } from 'sequelize';
 import db from '.';
+import Transactions from './Transactions';
+import Users from './Users';
 
 export default class Accounts extends Model {
   id: number;
   balance: string;
+
+  static associate() {
+    this.hasOne(Users);
+    this.hasMany(Transactions);
+  }
 }
 
 Accounts.init({
@@ -13,9 +20,9 @@ Accounts.init({
     autoIncrement: true,
   },
   balance: {
-    type: STRING,
+    type: DECIMAL(10, 2),
     allowNull: false,
-    defaultValue: "0",
+    defaultValue: 100.00,
   },
 }, {
   sequelize: db,

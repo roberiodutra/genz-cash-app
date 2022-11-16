@@ -10,7 +10,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       value: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      debitedAccountId: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      creditedAccountId: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

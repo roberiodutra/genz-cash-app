@@ -27,10 +27,11 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
     return { ...userInfo, ...token };
   }
 
-  public async create(username: string, password: string, accountId: number) {
-    await this.model.create({ username: 'asghey', password: '2345677943', accountId: 1 }).then().catch((err) => {
-      console.log('🚀 ~ UserService ~ create ~ err', err);
-    });
+  public async create(
+    username: string,
+    password: string,
+    accountId: number,
+  ) {
     const parsed = UserSchema.safeParse({ username, password });
     if (!parsed.success) throw parsed.error;
 
@@ -38,7 +39,9 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
     if (userExists) throw new Error(ErrorTypes.UserExists);
 
 
-    const { dataValues } = await this.model.create({ username, password, accountId });
+    const { dataValues } = await this.model.create(
+      { username, password, accountId }
+    );
 
     const userInfo = {
       id: dataValues.id,

@@ -10,7 +10,7 @@ export default class Users extends Model {
   accountId: number;
 
   static associate() {
-    Users.belongsTo(Accounts, { foreignKey: 'accountId' });
+    this.belongsTo(Accounts, { foreignKey: 'accountId' });
   }
 }
 
@@ -33,7 +33,7 @@ Users.init({
     references: {
       model: Accounts,
       key: 'id'
-    }
+    },
   },
 }, {
   sequelize: db,

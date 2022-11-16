@@ -16,18 +16,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       accountId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
-      // accountId: {
-      //   type: Sequelize.INTEGER,
-      //   allowNull: false,
-      //   references: {
-      //     model: 'accounts',
-      //     key: 'id'
-      //   },
-      //   onUpdate: 'CASCADE',
-      //   onDelete: 'CASCADE',
-      // },
     });
   },
   async down(queryInterface, Sequelize) {
