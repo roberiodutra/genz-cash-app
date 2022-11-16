@@ -20,10 +20,11 @@ Accounts.init({
 }, {
   sequelize: db,
   modelName: 'Accounts',
+  tableName: 'accounts',
   timestamps: false,
 });
 
-Accounts.belongsTo(Users, {
-  constraints: true,
-  foreignKey: 'accountId'
-});
+// Accounts.belongsTo(Users, {
+//   constraints: true,
+//   foreignKey: 'accountId'
+// });

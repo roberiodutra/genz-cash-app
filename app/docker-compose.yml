@@ -1,18 +1,10 @@
 version: '3.9'
 services:
-  db:
-    image: postgres:latest
-    container_name: db
-    ports:
-      - 5432:5432
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: genz_cash
-    restart: 'always'
   backend:
     container_name: app_backend
     build: ./backend
+    expose:
+      - '3001'
     ports:
       - 3001:3001
     working_dir: /app-backend
@@ -21,3 +13,26 @@ services:
       - ./backend/src:/app-backend/src
     depends_on:
       - db
+    environment:
+      - APP_PORT=3001
+      - JWT_SECRET=jwt_secret
+      - DB_USER=root
+      - DB_PASS=password
+      - DB_HOST=db
+      - DB_PORT=5432
+  db:
+    image: 'postgres:14.2-alpine'
+    container_name: db
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=genz_cash
+    ports:
+      - '5432:5432'
+    restart: 'always'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+volumes:
+  pgdata:
+    driver: local

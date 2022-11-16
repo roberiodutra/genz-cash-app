@@ -8,5 +8,10 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "strictPropertyInitialization": false,
+    "sourceMap": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "moduleResolution": "node",
+    "baseUrl": ".",
   }
 }

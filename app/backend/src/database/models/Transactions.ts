@@ -5,7 +5,6 @@ export default class Transactions extends Model {
   id: number;
   username: string;
   password: string;
-  accountId: string;
 }
 
 Transactions.init({
@@ -25,5 +24,6 @@ Transactions.init({
 }, {
   sequelize: db,
   modelName: 'Transactions',
+  tableName: 'transactions',
   timestamps: false,
 });

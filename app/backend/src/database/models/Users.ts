@@ -6,7 +6,6 @@ export default class Users extends Model {
   id: number;
   username: string;
   password: string;
-  accountId: string;
 }
 
 Users.init({
@@ -15,7 +14,7 @@ Users.init({
     primaryKey: true,
     autoIncrement: true,
   },
-  value: {
+  username: {
     type: STRING,
     allowNull: false,
   },
@@ -26,5 +25,15 @@ Users.init({
 }, {
   sequelize: db,
   modelName: 'Users',
+  tableName: 'users',
   timestamps: false,
 });
+
+// Users.addHook(
+//   'beforeSave',
+//   async (user: Users): Promise<void> => {
+//     if (user.password) {
+//       user.password = await bcrypt.hash(user.password, 8);
+//     }
+//   }
+// );
