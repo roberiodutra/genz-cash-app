@@ -27,21 +27,26 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
     return { ...userInfo, ...token };
   }
 
-  public async create(username: string, password: string) {
+  public async create(username: string, password: string, accountId: number) {
+    await this.model.create({ username: 'asghey', password: '2345677943', accountId: 1 }).then().catch((err) => {
+      console.log('🚀 ~ UserService ~ create ~ err', err);
+    });
     const parsed = UserSchema.safeParse({ username, password });
     if (!parsed.success) throw parsed.error;
 
     const userExists = await this.model.findOne({ where: { username } });
     if (userExists) throw new Error(ErrorTypes.UserExists);
-    const { dataValues } = await this.model.create({ username, password });
+
+
+    const { dataValues } = await this.model.create({ username, password, accountId });
 
     const userInfo = {
       id: dataValues.id,
       username,
-      password,
+      password
     };
 
-    const token = tokenGenerator(dataValues);
+    const token = tokenGenerator(userInfo);
     return { ...userInfo, ...token };
   }
 
@@ -50,7 +55,7 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
     return request;
   }
 
-  public async getOne(id: string) {
+  public async getOne(id: number) {
     const request = await this.model.findOne({
       where: { id }
     });

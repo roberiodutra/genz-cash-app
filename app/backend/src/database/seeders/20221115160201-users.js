@@ -7,6 +7,7 @@ module.exports = {
       {
         username: 'User',
         password: '$2a$08$Y8Abi8jXvsXyqm.rmp0B.uQBA5qUz7T6Ghlg/CvVr/gLxYj5UAZVO',
+        accoountId: 1,
         // senha: secret_user
       },
     ], {});

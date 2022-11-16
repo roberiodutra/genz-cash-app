@@ -1,6 +1,5 @@
 import { INTEGER, STRING, Model } from 'sequelize';
 import db from '.';
-import Users from './Users';
 
 export default class Accounts extends Model {
   id: number;
@@ -16,6 +15,7 @@ Accounts.init({
   balance: {
     type: STRING,
     allowNull: false,
+    defaultValue: "0",
   },
 }, {
   sequelize: db,
@@ -23,8 +23,3 @@ Accounts.init({
   tableName: 'accounts',
   timestamps: false,
 });
-
-// Accounts.belongsTo(Users, {
-//   constraints: true,
-//   foreignKey: 'accountId'
-// });

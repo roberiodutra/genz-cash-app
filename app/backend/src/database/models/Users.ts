@@ -7,6 +7,11 @@ export default class Users extends Model {
   id: number;
   username: string;
   password: string;
+  accountId: number;
+
+  static associate() {
+    Users.belongsTo(Accounts, { foreignKey: 'accountId' });
+  }
 }
 
 Users.init({
@@ -22,6 +27,13 @@ Users.init({
   password: {
     type: STRING,
     allowNull: false,
+  },
+  accountId: {
+    type: INTEGER,
+    references: {
+      model: Accounts,
+      key: 'id'
+    }
   },
 }, {
   sequelize: db,

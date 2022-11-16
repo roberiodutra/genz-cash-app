@@ -11,8 +11,8 @@ class UserController {
   };
 
   public create = async (req: Request, res: Response) => {
-    const { username, password } = req.body;
-    const request = await this.service.create(username, password);
+    const { username, password, accountId } = req.body;
+    const request = await this.service.create(username, password, +accountId);
     return res.status(201).json(request);
   };
 
@@ -22,7 +22,7 @@ class UserController {
   };
 
   public getOne = async (req: Request, res: Response) => {
-    const request = await this.service.getOne(req.params.id);
+    const request = await this.service.getOne(+req.params.id);
     return res.status(200).json(request);
   };
 
