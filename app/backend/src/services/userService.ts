@@ -1,9 +1,9 @@
-import Users from "../../../../database/models/Users";
-import { IRead } from "../../../../domain/interfaces/IRead";
-import { IUser } from "../../../../domain/interfaces/IUser";
-import { IWrite } from "../../../../domain/interfaces/IWrite";
-import { ErrorTypes } from "../../../../helpers/ErrorCatalog";
-import tokenGenerator from "../../../../helpers/TokenGenerator";
+import Users from "../database/models/Users";
+import { IRead } from "../interfaces/IRead";
+import { IUser } from "../interfaces/IUser";
+import { IWrite } from "../interfaces/IWrite";
+import { ErrorTypes } from "../helpers/ErrorCatalog";
+import tokenGenerator from "../helpers/TokenGenerator";
 
 class UserService implements IRead<IUser>, IWrite<IUser> {
   constructor(private model = Users) { }

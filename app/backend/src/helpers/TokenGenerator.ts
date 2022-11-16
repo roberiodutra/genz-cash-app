@@ -1,5 +1,5 @@
 import { sign, Secret, SignOptions } from 'jsonwebtoken';
-import { IUser } from 'src/domain/interfaces/IUser';
+import { IUser } from '../interfaces/IUser';
 
 const SECRET: Secret = process.env.SECRET || 'vnetod';
 
