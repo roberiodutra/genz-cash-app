@@ -1,15 +1,9 @@
 import { Router } from 'express';
-import Users from '../database/models';
-import getAll from '../domain/cases/baseController';
-import BaseController from '../domain/cases/baseController';
-import BaseService from '../domain/cases/baseService';
+import userController from '../domain/cases/login/controllers/userController';
 
 const Endpoints = Router();
 
-// const service = new BaseService(Users);
-// const controller = new BaseController(service);
-
-// Endpoints.post('/', controller.create);
-Endpoints.get('/', (req, res) => getAll(req, res));
+Endpoints.post('/', userController.create);
+Endpoints.get('/', userController.getAll);
 
 export default Endpoints;
