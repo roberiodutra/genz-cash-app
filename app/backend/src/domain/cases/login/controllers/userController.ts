@@ -4,8 +4,15 @@ import UserService from "../services/userService";
 class UserController {
   constructor(private service = UserService) { }
 
+  public login = async (req: Request, res: Response) => {
+    const { username, password } = req.body;
+    const userInfo = await this.service.login(username, password);
+    return res.status(200).json(userInfo);
+  };
+
   public create = async (req: Request, res: Response) => {
-    const request = await this.service.create(req.body);
+    const { username, password } = req.body;
+    const request = await this.service.create(username, password);
     return res.status(201).json(request);
   };
 
