@@ -1,5 +1,6 @@
 import { INTEGER, STRING, Model, Optional } from 'sequelize';
 import db from '.';
+import Bcrypt from '../../helpers/Bcrypt';
 import Accounts from './Accounts';
 
 export default class Users extends Model {
@@ -29,11 +30,11 @@ Users.init({
   timestamps: false,
 });
 
-// Users.addHook(
-//   'beforeSave',
-//   async (user: Users): Promise<void> => {
-//     if (user.password) {
-//       user.password = await bcrypt.hash(user.password, 8);
-//     }
-//   }
-// );
+Users.addHook(
+  'beforeSave',
+  async (user: Users): Promise<void> => {
+    if (user.password) {
+      user.password = await Bcrypt.hashPass(user.password);
+    }
+  }
+);

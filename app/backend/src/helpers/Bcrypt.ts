@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 
 class Bcrypt {
   public hashPass = (password: string) => {
-    return bcrypt.hash(password, 10);
+    return bcrypt.hash(password, 8);
   };
 
   public comparePass = (password: string, hash: string) => {

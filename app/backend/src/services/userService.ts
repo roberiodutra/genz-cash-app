@@ -24,6 +24,7 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
     const userExists = await this.model.findOne({ where: { username } });
     if (userExists) throw new Error(ErrorTypes.UserExists);
     const { dataValues } = await this.model.create({ username, password });
+    console.log('🚀 ~ UserService ~ create ~ dataValues', dataValues);
 
     const token = tokenGenerator(dataValues);
     return { ...dataValues, ...token };
