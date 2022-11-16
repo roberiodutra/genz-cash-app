@@ -3,6 +3,7 @@ import { IRead } from "../interfaces/IRead";
 import { IUser } from "../interfaces/IUser";
 import { IWrite } from "../interfaces/IWrite";
 import { ErrorTypes } from "../helpers/ErrorCatalog";
+import Bcrypt from "../helpers/Bcrypt";
 import tokenGenerator from "../helpers/TokenGenerator";
 
 class UserService implements IRead<IUser>, IWrite<IUser> {
@@ -10,6 +11,11 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
 
   public async login(username: string, password: string) {
     const user = await this.model.findOne({ where: { username } });
+    if (!user) throw new Error(ErrorTypes.UserNotFound);
+
+    const checkUserPassword = await Bcrypt.comparePass(password, user.password);
+    if (!checkUserPassword) throw new Error(ErrorTypes.WrongPassword);
+
     const userInfo = {
       id: user?.id,
       username,
