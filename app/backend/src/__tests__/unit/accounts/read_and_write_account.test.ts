@@ -13,7 +13,7 @@ describe('Accounts route tests', () => {
   beforeEach(() => {
     sinon.stub(Accounts, 'create' as never).resolves(createdAccount);
     sinon.stub(Accounts, 'findOne' as never).resolves(createdAccount);
-    sinon.stub(Accounts, 'update' as never).resolves(createdAccount);
+    sinon.stub(Accounts, 'update' as never).resolves();
   });
 
   afterEach(() => sinon.restore());

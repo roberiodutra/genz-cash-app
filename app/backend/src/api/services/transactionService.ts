@@ -6,10 +6,7 @@ class TransactionService {
 
 
   public async create(reqbody: ITransaction) {
-    await this.model.create({ ...reqbody }).then().catch((err) => {
-      console.log('🚀 ~ TransactionService ~ create ~ err', err);
-    });
-    const { dataValues } = await this.model.create({ ...reqbody });
+    const dataValues = await this.model.create({ ...reqbody });
     return dataValues;
   }
 
