@@ -11,17 +11,12 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
   constructor(private model = Users) { }
 
   public async login(username: string, password: string) {
-    const user = await this.model.findOne({ where: { username } });
-    if (!user) throw new Error(ErrorTypes.UserNotFound);
+    const userInfo = await this.model.findOne({ where: { username } });
+    if (!userInfo) throw new Error(ErrorTypes.UserNotFound);
 
-    const checkUserPassword = await Bcrypt.comparePass(password, user.password);
-    if (!checkUserPassword) throw new Error(ErrorTypes.WrongPassword);
+    const checkPassword = await Bcrypt.comparePass(password, userInfo.password);
+    if (!checkPassword) throw new Error(ErrorTypes.WrongPassword);
 
-    const userInfo = {
-      id: user.id,
-      username,
-      password,
-    };
     const token = tokenGenerator(userInfo);
 
     return { ...userInfo, ...token };
@@ -39,11 +34,10 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
     if (userExists) throw new Error(ErrorTypes.UserExists);
 
 
-    const { id } = await this.model.create(
+    const userInfo = await this.model.create(
       { username, password, accountId }
     );
 
-    const userInfo = { id, username, password };
     const token = tokenGenerator(userInfo);
     return { ...userInfo, ...token };
   }
