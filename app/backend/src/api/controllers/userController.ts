@@ -33,8 +33,8 @@ class UserController {
   };
 
   public delete = async (req: Request, res: Response) => {
-    const request = await this.service.delete(req.params.id);
-    return res.status(StatusCodes.OK).json(request);
+    await this.service.delete(req.params.id);
+    return res.status(StatusCodes.NO_CONTENT).end();
   };
 }
 

@@ -1,8 +1,8 @@
 import chai from 'chai';
 import sinon from 'sinon';
 import chaiHttp from 'chai-http';
-import server from '../../../app';
-import Users from '../../../database/models/Users';
+import server from '../../../api/app';
+import Users from '../../../api/database/models/Users';
 import {
   userLogin,
   wrongUserLogin,

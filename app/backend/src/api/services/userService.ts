@@ -65,9 +65,7 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
   }
 
   public async delete(id: string) {
-    const request = await this.model.findOne({ where: { id } });
-    if (request) request.destroy();
-    return ({ status: 'Deleted Sucessfully' });
+    await this.model.destroy({ where: { id } });
   }
 }
 
