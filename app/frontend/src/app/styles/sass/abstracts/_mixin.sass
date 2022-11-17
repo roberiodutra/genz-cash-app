@@ -1,0 +1,54 @@
+@use 'variables'
+
+@mixin container
+  max-width: variables.$container-width
+  padding: 1.5rem 0
+  margin: 0 auto
+
+@mixin flex-center
+  display: flex
+  align-items: center
+  justify-content: center
+
+@mixin phone-only
+  @media (max-width: 479px)
+    padding: 0.5rem
+    @content
+    thead,
+    tbody,
+    th,
+    td,
+    tr
+      display: block
+    thead tr
+      position: absolute
+      top: -9999px
+      left: -9999px
+    td:nth-last-child(1), td:nth-last-child(2)
+      display: none
+
+@mixin tablet-portrait
+  @media (min-width: 480px)
+    @content
+
+@mixin tablet-landscape
+  @media (min-width: 900px)
+    @content
+
+@mixin desktop
+  @media (min-width: 1200px)
+    @content
+
+@mixin big-desktop
+  @media (min-width: 1800px)
+    @content
+
+@mixin button
+  all: unset
+  cursor: pointer
+  &:hover
+    color: variables.$secondary-color
+
+@mixin hover
+  background-color: variables.$hover-blue
+  color: variables.$primary-color

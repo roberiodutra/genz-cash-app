@@ -5,7 +5,7 @@ export default {
   coverageProvider: "v8",
   testRegex: "./*\\.test\\.(t|j)sx?$",
   testEnvironment: "jsdom",
-  setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
+  setupFilesAfterEnv: ["<rootDir>/src/app/setupTests.ts"],
   transform: {
     "^.+\\.(t|j)sx?$": [
       "@swc/jest",

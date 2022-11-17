@@ -1,0 +1,47 @@
+@use '../abstracts/variables'
+@use '../abstracts/mixin'
+
+@mixin section
+  .header
+    display: flex
+    justify-content: space-between
+    @include mixin.container
+    @include mixin.phone-only
+      display: block
+      padding-top: 2rem
+      text-align: center
+
+    &-logo
+      color: variables.$night-blueHex
+      margin-left: 1rem
+      font-size: 2.2rem
+      @include mixin.phone-only
+
+    &-navbar
+      height: 100%
+      margin: 0 1rem
+      font-size: 1.1rem
+      @include mixin.flex-center
+      @include mixin.phone-only
+        padding-top: 1.5rem
+
+    button
+      @include mixin.button
+
+    .navbar-buttons
+      padding: 0 1rem
+      @include mixin.phone-only
+
+    &-social-media
+      ul
+        height: 100%
+        @include mixin.flex-center
+        @include mixin.phone-only
+          display: none
+
+        li
+          margin: 0 1rem
+
+          a
+            &:hover
+              color: variables.$primary-color
