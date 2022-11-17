@@ -1,4 +1,4 @@
-import Users from "../database/models/Users";
+import Users from "../../database/models/Users";
 import { IRead } from "../interfaces/IRead";
 import { IUser } from "../interfaces/IUser";
 import { IWrite } from "../interfaces/IWrite";

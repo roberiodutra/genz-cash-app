@@ -1,5 +1,5 @@
 import { ITransaction } from "../interfaces/ITransaction";
-import Transactions from "../database/models/Transactions";
+import Transactions from "../../database/models/Transactions";
 
 class TransactionService {
   constructor(private model = Transactions) { }

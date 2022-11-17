@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import chaiHttp from 'chai-http';
 import server from '../../../api/app';
 import { createdUser } from '../__mocks__/usersMock';
-import Users from '../../../api/database/models/Users';
+import Users from '../../../database/models/Users';
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -29,7 +29,7 @@ describe('User route tests', () => {
 
   it('Update user', async () => {
     await chai.request(server.app)
-      .put('/user/2')
+      .put('/user/1')
       .set('Authorization', createdUser.token)
       .send({ username: "Update", password: 'newPass123' })
       .then(({ status }) => {
@@ -41,7 +41,7 @@ describe('User route tests', () => {
     await chai.request(server.app)
       .delete('/user/1')
       .set('Authorization', createdUser.token)
-      .then(({ status, body }) => {
+      .then(({ status }) => {
         expect(status).to.be.eq(204);
       });
   });

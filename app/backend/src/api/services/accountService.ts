@@ -1,11 +1,11 @@
-import Accounts from "../database/models/Accounts";
+import Accounts from "../../database/models/Accounts";
 
 class AccountService {
   constructor(private model = Accounts) { }
 
   public async create() {
-    const { dataValues } = await this.model.create();
-    return dataValues;
+    const accountData = await this.model.create();
+    return accountData;
   }
 
   public async getOne(id: string) {
