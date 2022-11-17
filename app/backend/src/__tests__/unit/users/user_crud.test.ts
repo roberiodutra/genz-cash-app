@@ -29,7 +29,7 @@ describe('User route tests', () => {
 
   it('Update user', async () => {
     await chai.request(server.app)
-      .put('/user/1')
+      .put('/user/2')
       .set('Authorization', createdUser.token)
       .send({ username: "Update", password: 'newPass123' })
       .then(({ status }) => {
