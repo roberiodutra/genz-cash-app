@@ -3,11 +3,11 @@ import db from '.';
 import Accounts from './Accounts';
 
 export default class Transactions extends Model {
-  id: number;
-  value: number;
-  debitedAccountId: number;
-  creditedAccountId: number;
-  createdAt: string;
+  declare id: number;
+  declare value: number;
+  declare debitedAccountId: number;
+  declare creditedAccountId: number;
+  declare createdAt: string;
 
   static associate() {
     this.belongsTo(Accounts, { foreignKey: 'debitedAccountId' });

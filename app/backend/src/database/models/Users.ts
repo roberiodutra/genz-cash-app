@@ -4,10 +4,10 @@ import Bcrypt from '../../helpers/Bcrypt';
 import Accounts from './Accounts';
 
 export default class Users extends Model {
-  id: number;
-  username: string;
-  password: string;
-  accountId: number;
+  declare id: number;
+  declare username: string;
+  declare password: string;
+  declare accountId: number;
 
   static associate() {
     this.belongsTo(Accounts, { foreignKey: 'accountId' });

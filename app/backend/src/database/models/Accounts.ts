@@ -4,8 +4,8 @@ import Transactions from './Transactions';
 import Users from './Users';
 
 export default class Accounts extends Model {
-  id: number;
-  balance: string;
+  declare id: number;
+  declare balance: string;
 
   static associate() {
     this.hasOne(Users);

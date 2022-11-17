@@ -18,7 +18,7 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
     if (!checkUserPassword) throw new Error(ErrorTypes.WrongPassword);
 
     const userInfo = {
-      id: user?.id,
+      id: user.id,
       username,
       password,
     };
@@ -39,16 +39,11 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
     if (userExists) throw new Error(ErrorTypes.UserExists);
 
 
-    const { dataValues } = await this.model.create(
+    const { id } = await this.model.create(
       { username, password, accountId }
     );
 
-    const userInfo = {
-      id: dataValues.id,
-      username,
-      password
-    };
-
+    const userInfo = { id, username, password };
     const token = tokenGenerator(userInfo);
     return { ...userInfo, ...token };
   }

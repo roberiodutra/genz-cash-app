@@ -13,7 +13,7 @@ class UserController {
 
   public create = async (req: Request, res: Response) => {
     const { username, password, accountId } = req.body;
-    const request = await this.service.create(username, password, +accountId);
+    const request = await this.service.create(username, password, accountId);
     return res.status(StatusCodes.CREATED).json(request);
   };
 

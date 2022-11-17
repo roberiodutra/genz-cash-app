@@ -3,8 +3,11 @@ import sinon from 'sinon';
 import chaiHttp from 'chai-http';
 import server from '../../../app';
 import Users from '../../../database/models/Users';
-import { userLogin, wrongUserLogin, createdUser } from '../__mocks__/usersMock';
-import { IUser } from 'src/interfaces/IUser';
+import {
+  userLogin,
+  wrongUserLogin,
+  createdUser,
+} from '../__mocks__/usersMock';
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -13,7 +16,7 @@ describe('Sign in route tests', () => {
   afterEach(() => sinon.restore());
 
   it('On success', async () => {
-    sinon.stub(Users, 'findOne' as any).resolves(createdUser);
+    sinon.stub(Users, 'findOne' as never).resolves(createdUser);
     await chai.request(server.app)
       .post('/sign_in')
       .send(userLogin)
@@ -36,7 +39,7 @@ describe('Sign in route tests', () => {
   });
 
   it('When invalid password', async () => {
-    sinon.stub(Users, 'findOne' as any).resolves(createdUser);
+    sinon.stub(Users, 'findOne' as never).resolves(createdUser);
     await chai.request(server.app)
       .post('/sign_in')
       .send(wrongUserLogin)
@@ -47,7 +50,7 @@ describe('Sign in route tests', () => {
   });
 
   it('When nothing is sent by frontend', async () => {
-    sinon.stub(Users, 'findOne' as any).resolves(createdUser);
+    sinon.stub(Users, 'findOne' as never).resolves(createdUser);
     await chai.request(server.app)
       .post('/sign_in')
       .then(({ status, body }) => {
