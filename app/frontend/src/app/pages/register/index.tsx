@@ -1,17 +1,17 @@
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { UserRegisterType } from "../../types/UserRegisterType";
-import { registerSchema } from "../../schemas/registerSchema";
-import { useNavigate } from "react-router-dom";
-import { saveUser } from "../../utils/localStorage";
-import { useUsers } from "../../context/providers/UserProvider";
-import { useState } from "react";
-import apiService from "../../services/apiService";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { UserRegisterType } from '../../types/UserRegisterType';
+import { registerSchema } from '../../schemas/registerSchema';
+import { useNavigate } from 'react-router-dom';
+import { saveUser } from '../../utils/localStorage';
+import { useUsers } from '../../context/providers/UserProvider';
+import { useState } from 'react';
+import apiService from '../../services/apiService';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 export default function Register() {
-  const [errRegister, setErrRegister] = useState("");
+  const [errorRegister, setErrorRegister] = useState('');
   const navigate = useNavigate();
   const { setUser } = useUsers();
   const {
@@ -23,16 +23,15 @@ export default function Register() {
   });
 
   const onSubmit = (data: UserRegisterType) => {
-    const { confirmPassword, ...rest } = data;
     apiService
-      .signUP({ ...rest, role: "member" })
+      .signUP(data)
       .then(({ data }) => {
         setUser(data);
         saveUser(data);
-        navigate("/member");
+        navigate('/');
       })
-      .catch((_e) => {
-        setErrRegister("User already exists");
+      .catch((_err) => {
+        setErrorRegister('User already exists');
       });
   };
 
@@ -48,43 +47,15 @@ export default function Register() {
             <div className="form-box">
               <input
                 className="form-input"
-                id="first-name"
+                id="username"
                 type="text"
-                {...register("firstName")}
+                {...register('username')}
                 required
               />
-              <label htmlFor="first-name" className="form-label">
-                First Name
+              <label htmlFor="username" className="form-label">
+                Username
               </label>
-              <div>{errors.firstName?.message}</div>
-            </div>
-
-            <div className="form-box">
-              <input
-                className="form-input"
-                id="last-name"
-                type="text"
-                {...register("lastName")}
-                required
-              />
-              <label htmlFor="last-name" className="form-label">
-                Last Name
-              </label>
-              <div>{errors.lastName?.message}</div>
-            </div>
-
-            <div className="form-box">
-              <input
-                className="form-input"
-                id="email"
-                type="text"
-                {...register("email")}
-                required
-              />
-              <label htmlFor="email" className="form-label">
-                Email
-              </label>
-              <div>{errRegister || errors.email?.message}</div>
+              <div>{errorRegister || errors.username?.message}</div>
             </div>
 
             <div className="form-box">
@@ -92,27 +63,13 @@ export default function Register() {
                 className="form-input"
                 id="password"
                 type="password"
-                {...register("password")}
+                {...register('password')}
                 required
               />
               <label htmlFor="password" className="form-label">
                 Password
               </label>
               <div>{errors.password?.message}</div>
-            </div>
-
-            <div className="form-box">
-              <input
-                className="form-input"
-                id="confirm-password"
-                type="password"
-                {...register("confirmPassword")}
-                required
-              />
-              <label htmlFor="confirm-password" className="form-label">
-                Confirm Password
-              </label>
-              <div>{errors.confirmPassword?.message}</div>
             </div>
 
             <div className="form-button">
@@ -126,7 +83,7 @@ export default function Register() {
         <button
           className="sign-button"
           type="button"
-          onClick={() => navigate("/sign_in")}
+          onClick={() => navigate('/sign_in')}
         >
           Sign In
         </button>
