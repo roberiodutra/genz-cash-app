@@ -6,7 +6,7 @@ const swaggerDefinition = {
   info: {
     title: 'Swagger Genz Cash - API',
     version: '1.0.0',
-    description: 'Documentation for TS-Node api',
+    description: 'Documentation for Genz-Cash api',
     contact: { email: 'dev.roberio@gmail.com' }
   },
   components: {

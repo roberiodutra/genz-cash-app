@@ -8,13 +8,11 @@
   "scripts": {
     "start": "node build/api/server.js",
     "dev": "nodemon -L -e ts --exec \"npm run build && npm start\"",
-    "build": "sucrase ./src -d ./build --transforms typescript,imports",
+    "build": "(sucrase ./src -d ./build --transforms typescript,imports && npx sequelize-cli db:migrate)",
     "lint": "eslint . --ext .ts",
     "test": "mocha --require ts-node/register src/__tests__/**/*.test.ts --exit",
     "test-watch": "nodemon --exec 'mocha --require ts-node/register src/__tests__/**/*.test.ts'",
-    "test:coverage": "nyc --all npm run test",
-    "db:migrate": "npx sequelize-cli db:migrate",
-    "db:seed": "npx sequelize-cli db:seed:all"
+    "test:coverage": "nyc --all npm run test"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

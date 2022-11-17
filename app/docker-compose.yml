@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.0'
 services:
   backend:
     container_name: app_backend
@@ -32,7 +32,7 @@ services:
     restart: 'always'
     # volumes:
     #   - pgdata:/var/lib/postgresql/data
-      # - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    # - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
 # volumes:
 #   pgdata:
 #     driver: local
