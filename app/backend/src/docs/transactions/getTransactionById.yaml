@@ -1,0 +1,17 @@
+paths:
+  /transaction/{id}:
+    get:
+      tags:
+        - Transactions
+      summary: Gets transaction by ID
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK

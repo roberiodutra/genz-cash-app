@@ -1,0 +1,30 @@
+paths:
+  /user/{id}:
+    put:
+      tags:
+        - Users
+      summary: Update user
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              example:
+                username: Tester
+                password: newPass123
+      responses:
+        200:
+          description: OK

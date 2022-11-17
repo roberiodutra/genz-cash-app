@@ -1,0 +1,29 @@
+paths:
+  /transaction:
+    post:
+      tags:
+        - Transactions
+      summary: Creates an transaction
+      produces:
+        - application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: number
+                debitedAccountId:
+                  type: number
+                creditedAccountId:
+                  type: number
+
+              example:
+                value: 10
+                debitedAccountId: 1
+                creditedAccountId: 2
+        required: true
+      responses:
+        201:
+          description: CREATED

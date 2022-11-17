@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "API for Genz Cash project",
   "main": "index.ts",
+  "author": "Robério Dutra",
+  "license": "MIT",
   "scripts": {
-    "start": "node build/server.js",
+    "start": "node build/api/server.js",
     "dev": "nodemon -L -e ts --exec \"npm run build && npm start\"",
     "build": "sucrase ./src -d ./build --transforms typescript,imports",
     "lint": "eslint . --ext .ts",
@@ -14,8 +16,6 @@
     "db:migrate": "npx sequelize-cli db:migrate",
     "db:seed": "npx sequelize-cli db:seed:all"
   },
-  "author": "Robério Dutra",
-  "license": "MIT",
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/chai": "^4.3.4",

@@ -1,0 +1,33 @@
+paths:
+  /transaction/{id}:
+    put:
+      tags:
+        - Transactions
+      summary: Updates an transaction
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: number
+                debitedAccountId:
+                  type: number
+                creditedAccountId:
+                  type: number
+              example:
+                value: 990
+                debitedAccountId: 2
+                creditedAccountId: 1
+      responses:
+        200:
+          description: OK

@@ -3,6 +3,7 @@ import 'express-async-errors';
 import cors from 'cors';
 import Endpoints from './routes';
 import ErrorHandler from "./middlewares/ErrorHandler";
+import swaggerServer from '../docs/swagger';
 
 class App {
   public app: express.Application;
@@ -20,6 +21,7 @@ class App {
 
   private routes() {
     this.app.use(Endpoints);
+    this.app.use('/docs', ...swaggerServer);
     this.app.use(ErrorHandler);
   }
 

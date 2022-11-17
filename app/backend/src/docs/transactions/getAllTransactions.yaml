@@ -1,0 +1,11 @@
+paths:
+  /transaction:
+    get:
+      tags:
+        - Transactions
+      summary: Gets all transactions
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK

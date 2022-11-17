@@ -1,0 +1,11 @@
+paths:
+  /account:
+    post:
+      tags:
+        - Accounts
+      summary: Creates an account
+      produces:
+        - application/json
+      responses:
+        201:
+          description: CREATED

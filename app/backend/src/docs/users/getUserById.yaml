@@ -1,0 +1,17 @@
+paths:
+  /user/{id}:
+    get:
+      tags:
+        - Users
+      summary: Get user by ID
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK

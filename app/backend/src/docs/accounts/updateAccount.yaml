@@ -1,0 +1,27 @@
+paths:
+  /account/{id}:
+    put:
+      tags:
+        - Accounts
+      summary: Updates an account
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                balance:
+                  type: number
+              example:
+                balance: 500
+      responses:
+        200:
+          description: OK
