@@ -9,6 +9,7 @@ import { setToken } from '../../store/user/userSlice';
 import { useAppDispatch } from '../../store/hooks/useAppDispatch';
 import Form from '../components/Form';
 import { UserType } from '../../types/UserType';
+import { setAccountBalance, setAccountId } from '../../store/user/userSlice';
 
 export default function Register() {
   const [errorRegister, setErrorRegister] = useState('');
@@ -23,7 +24,7 @@ export default function Register() {
     if (user) {
       const { username, token } = user;
       dispatch(setToken({ username, token }));
-      navigate('/');
+      // navigate('/');
     }
   }, [user]);
 
@@ -33,6 +34,9 @@ export default function Register() {
       if (newUser.id) {
         const account = await createAccount().unwrap();
         if (account.id) {
+          console.log('🚀 ~ onSubmitHandler ~ account', account);
+          dispatch(setAccountId(account.id));
+          dispatch(setAccountBalance(+account.balance));
           await updateUser({
             id: newUser.id,
             accountId: account.id,

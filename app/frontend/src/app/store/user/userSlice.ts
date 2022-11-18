@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "./initialState";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { initialState } from "../initialState";
 
 export const userSlice = createSlice({
   name: "user",
@@ -8,8 +8,14 @@ export const userSlice = createSlice({
     setToken: (state, { payload }) => {
       state.username = payload.username;
       state.token = payload.token;
-    }
+    },
+    setAccountId: (state, { payload }) => {
+      state.account = payload;
+    },
+    setAccountBalance: (state, action: PayloadAction<number>) => {
+      state.balance += +action.payload;
+    },
   },
 });
 
-export const { setToken } = userSlice.actions;
+export const { setToken, setAccountId, setAccountBalance } = userSlice.actions;
