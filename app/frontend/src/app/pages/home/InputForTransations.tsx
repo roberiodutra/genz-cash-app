@@ -2,8 +2,13 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { transactionSchema } from '../../schemas/transationSchema';
 import { TransactionType } from '../../types/TransactionType';
+import { transactionApi } from '../../store/transaction/apiService';
+import { getUserFromLocalStorage } from '../../utils/localStorage';
+import { userApi } from '../../store/user/apiService';
 
-export default function QuestionForm() {
+export default function InputForTransactions() {
+  const [createTransaction] = transactionApi.useCreateTransactionMutation();
+  const user = getUserFromLocalStorage();
   const {
     register,
     handleSubmit,
@@ -13,14 +18,22 @@ export default function QuestionForm() {
     resolver: yupResolver(transactionSchema),
   });
 
-  const onSubmit = (data: TransactionType) => {
-    // apiService.registerQuestion();
-    reset();
-  };
+  // const onSubmitHandler = async (data: TransactionType) => {
+  //   const pack = {
+  //     value: data.value,
+  //     debitedAccountId: user.username,
+  //     creditedAccountId: data.receiver
+  //   };
+  //   await createTransaction()
+  //     .unwrap()
+  //     .then()
+  //     .catch((error) => {});
+  //   reset();
+  // };
 
   return (
     <section className="form">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
         <fieldset>
           <legend>
             <b>Send Money</b>

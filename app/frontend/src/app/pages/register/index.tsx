@@ -1,15 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import { userApi } from '../../store/user/apiService';
 import { accountApi } from '../../store/account/apiService';
 import { getUserFromLocalStorage } from '../../utils/localStorage';
 import { setToken } from '../../store/user/userSlice';
 import { useAppDispatch } from '../../store/hooks/useAppDispatch';
-import Form from '../components/Form';
 import { UserType } from '../../types/UserType';
 import { setAccountBalance, setAccountId } from '../../store/user/userSlice';
+import Header from '../components/Header';
+import Form from '../components/Form';
+import Footer from '../components/Footer';
 
 export default function Register() {
   const [errorRegister, setErrorRegister] = useState('');
@@ -24,28 +24,29 @@ export default function Register() {
     if (user) {
       const { username, token } = user;
       dispatch(setToken({ username, token }));
-      // navigate('/');
+      navigate('/');
     }
   }, [user]);
 
   const onSubmitHandler = async (userInfo: UserType) => {
-    try {
-      const newUser = await createUser(userInfo).unwrap();
-      if (newUser.id) {
-        const account = await createAccount().unwrap();
-        if (account.id) {
-          console.log('🚀 ~ onSubmitHandler ~ account', account);
-          dispatch(setAccountId(account.id));
-          dispatch(setAccountBalance(+account.balance));
-          await updateUser({
-            id: newUser.id,
-            accountId: account.id,
-          });
+    await createUser(userInfo)
+      .unwrap()
+      .then(async (newUser) => {
+        if (newUser.id) {
+          const account = await createAccount().unwrap();
+          if (account.id) {
+            dispatch(setAccountId(account.id));
+            dispatch(setAccountBalance(+account.balance));
+            await updateUser({
+              id: newUser.id,
+              accountId: account.id,
+            });
+          }
         }
-      }
-    } catch (_e) {
-      setErrorRegister('User Already Exists');
-    }
+      })
+      .catch((error) => {
+        if (error && 'data' in error) setErrorRegister(error.data.message);
+      });
   };
 
   return (

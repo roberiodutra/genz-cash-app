@@ -6,6 +6,7 @@ import { ErrorTypes } from "../helpers/ErrorCatalog";
 import Bcrypt from "../helpers/Bcrypt";
 import tokenGenerator from "../helpers/TokenGenerator";
 import { UserSchema } from "../types/userType";
+import { Op } from "sequelize";
 
 class UserService implements IRead<IUser>, IWrite<IUser> {
   constructor(private model = Users) { }
@@ -44,9 +45,14 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
     return request;
   }
 
-  public async getOne(id: number) {
+  public async getUserByName() {
+    const request = await this.model.findOne();
+    return request;
+  }
+
+  public async getOne(idOrName: string) {
     const request = await this.model.findOne({
-      where: { id }
+      where: { [Number.isInteger(+idOrName) ? 'id' : 'username']: idOrName }
     });
     return request;
   }

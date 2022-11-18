@@ -23,7 +23,9 @@ class UserController {
   };
 
   public getOne = async (req: Request, res: Response) => {
-    const request = await this.service.getOne(+req.params.id);
+    const { idOrName } = req.query;
+    if (typeof idOrName !== 'string') return res.end();
+    const request = await this.service.getOne(idOrName);
     return res.status(StatusCodes.OK).json(request);
   };
 
