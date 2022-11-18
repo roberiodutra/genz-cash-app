@@ -5,34 +5,27 @@ export const transactionApi = createApi({
   reducerPath: "transactionApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001" }),
   endpoints: (builder) => ({
-    getUserById: builder.query<ITransaction, number>({
-      query: (id) => `/user/${id}`,
+    getTransactionById: builder.query<ITransaction, number>({
+      query: (id) => `/transaction/${id}`,
     }),
-    createUser: builder.mutation<ITransaction, ITransaction>({
+    createTransaction: builder.mutation<ITransaction, ITransaction>({
       query: (user) => ({
-        url: "/sign_up",
+        url: "/transaction",
         body: user,
         method: "POST",
       }),
     }),
-    loginUser: builder.mutation<ITransaction, ITransaction>({
-      query: (user) => ({
-        url: "/sign_in",
-        body: user,
-        method: "POST",
+    getAllTransactions: builder.mutation<ITransaction, ITransaction>({
+      query: () => ({
+        url: "/transaction",
+        method: "GET",
       }),
     }),
-    updateUser: builder.mutation<ITransaction, ITransaction>({
+    updateTransaction: builder.mutation<ITransaction, ITransaction>({
       query: (user) => ({
-        url: `/user/${user.id}`,
+        url: `/transaction/${user.id}`,
         body: user,
         method: "PATCH",
-      }),
-    }),
-    deleteUser: builder.mutation<void, number>({
-      query: (id) => ({
-        url: `/users/${id}`,
-        method: "DELETE",
       }),
     }),
   }),

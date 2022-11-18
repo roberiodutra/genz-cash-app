@@ -1,4 +1,4 @@
 export interface ITransaction {
   id?: string;
-  value: string;
+  value: number;
 }
