@@ -9,16 +9,7 @@ import { setToken } from '../../store/user/userSlice';
 import { getUserFromLocalStorage } from '../../utils/localStorage';
 
 export default function Home() {
-  const user = getUserFromLocalStorage();
-  const dispatch = useAppDispatch();
   const questions: [] = [];
-
-  useEffect(() => {
-    if (user) {
-      const { username, token } = user;
-      dispatch(setToken({ username, token }));
-    }
-  }, [user]);
 
   return (
     <main>
@@ -33,7 +24,7 @@ export default function Home() {
           </tr>
         </thead>
         {questions?.map((Q, I) => (
-          <TransactionCard key={I} data={Q} />
+          <TransactionCard />
         ))}
       </table>
       <Footer />

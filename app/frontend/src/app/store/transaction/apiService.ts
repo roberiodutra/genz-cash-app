@@ -1,17 +1,27 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { RootState } from "../types";
 import { ITransaction } from "./interfaces/ITransaction";
 
 export const transactionApi = createApi({
   reducerPath: "transactionApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:3001",
+    prepareHeaders: (headers, { getState }) => {
+      const token = (getState() as RootState).user.token;
+
+      headers.set('authorization', token || '');
+
+      return headers;
+    },
+  }),
   endpoints: (builder) => ({
     getTransactionById: builder.query<ITransaction, number>({
       query: (id) => `/transaction/${id}`,
     }),
     createTransaction: builder.mutation<ITransaction, ITransaction>({
-      query: (user) => ({
+      query: (data) => ({
         url: "/transaction",
-        body: user,
+        body: data,
         method: "POST",
       }),
     }),
@@ -22,10 +32,10 @@ export const transactionApi = createApi({
       }),
     }),
     updateTransaction: builder.mutation<ITransaction, ITransaction>({
-      query: (user) => ({
-        url: `/transaction/${user.id}`,
-        body: user,
-        method: "PATCH",
+      query: (data) => ({
+        url: `/transaction/${data.id}`,
+        body: data,
+        method: "PUT",
       }),
     }),
   }),

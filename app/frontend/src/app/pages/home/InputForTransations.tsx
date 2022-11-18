@@ -20,16 +20,14 @@ export default function InputForTransactions() {
   });
 
   const onSubmitHandler = async (data: TransactionType) => {
-    const receiver = await getUserByIdOrName(data.receiver);
-    console.log('🚀 ~ onSubmitHandler ~ receiver', receiver);
-    // const transactionData = {
-    //   value: data.value,
-    //   debitedAccountId: user.id,
-    //   creditedAccountId: receiver.id,
-    // };
-    // console.log('🚀 ~ onSubmitHandler ~ transactionData', transactionData);
-    // await createTransaction(transactionData);
-    // reset();
+    const receiver = await getUserByIdOrName(data.receiver).unwrap();
+    if (receiver.id)
+      await createTransaction({
+        value: data.value,
+        debitedAccountId: user.id,
+        creditedAccountId: receiver.id,
+      });
+    reset();
   };
 
   return (

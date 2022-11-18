@@ -18,7 +18,7 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
     const checkPassword = await Bcrypt.comparePass(password, userInfo.password);
     if (!checkPassword) throw new Error(ErrorTypes.WrongPassword);
 
-    const token = tokenGenerator(userInfo.dataValues);
+    const token = tokenGenerator({ ...userInfo.dataValues, password });
 
     return { ...userInfo.dataValues, ...token };
   }
@@ -36,7 +36,7 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
 
     const userInfo = await this.model.create({ username, password });
 
-    const token = tokenGenerator(userInfo.dataValues);
+    const token = tokenGenerator({ ...userInfo.dataValues, password });
     return { ...userInfo.dataValues, ...token };
   }
 

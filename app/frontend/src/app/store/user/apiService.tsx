@@ -3,18 +3,18 @@ import {
   createApi,
   FetchArgs,
   fetchBaseQuery,
-} from "@reduxjs/toolkit/query/react";
-import { LocalUserType } from "../../types/LocalUserType";
-import { saveUserOnLocalStorage } from "../../utils/localStorage";
-import { RootState } from "../types";
-import { ICustomError } from "./interfaces/ICustomError";
-import { IUser } from "./interfaces/IUser";
-import { IUserAccount } from "./interfaces/IUserAccount";
+} from '@reduxjs/toolkit/query/react';
+import { LocalUserType } from '../../types/LocalUserType';
+import { saveUserOnLocalStorage } from '../../utils/localStorage';
+import { RootState } from '../types';
+import { ICustomError } from './interfaces/ICustomError';
+import { IUser, IUserFullData } from './interfaces/IUser';
+import { IUserAccount } from './interfaces/IUserAccount';
 
 export const userApi = createApi({
-  reducerPath: "userApi",
+  reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3001",
+    baseUrl: 'http://localhost:3001',
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).user.token;
 
@@ -24,14 +24,14 @@ export const userApi = createApi({
     },
   }) as BaseQueryFn<string | FetchArgs, unknown, ICustomError>,
   endpoints: (builder) => ({
-    getUserByIdOrName: builder.mutation<IUser, string>({
+    getUserByIdOrName: builder.mutation<IUserFullData, string>({
       query: (query) => `/user?idOrName=${query}`,
     }),
     createUser: builder.mutation<LocalUserType, IUser>({
       query: (user) => ({
-        url: "/sign_up",
+        url: '/sign_up',
         body: user,
-        method: "POST",
+        method: 'POST',
       }),
       transformResponse: (response: LocalUserType) => {
         saveUserOnLocalStorage(response);
@@ -40,9 +40,9 @@ export const userApi = createApi({
     }),
     loginUser: builder.mutation<LocalUserType, IUser>({
       query: (user) => ({
-        url: "/sign_in",
+        url: '/sign_in',
         body: user,
-        method: "POST",
+        method: 'POST',
       }),
       transformResponse: (response: LocalUserType) => {
         saveUserOnLocalStorage(response);
@@ -53,13 +53,13 @@ export const userApi = createApi({
       query: ({ id, ...rest }) => ({
         url: `/user/${id}`,
         body: rest,
-        method: "PUT",
+        method: 'PUT',
       }),
     }),
     deleteUser: builder.mutation<void, number>({
       query: (id) => ({
         url: `/users/${id}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
     }),
   }),

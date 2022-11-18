@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
-import { dataType } from '../../types/dataType';
-import { removeUser } from '../../utils/localStorage';
+import { removeUserFromLocalStorage } from '../../utils/localStorage';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-export default function TransactionCard({
-  data: { question, status, _id, author, answer },
-}: dataType) {
+export default function TransactionCard() {
   const [admin, setAdmin] = useState(false);
   const [owner, setOwner] = useState(false);
   const [navbarOpen, setNavbarOpen] = useState(false);
