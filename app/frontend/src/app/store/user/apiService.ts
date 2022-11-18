@@ -24,8 +24,8 @@ export const userApi = createApi({
     },
   }) as BaseQueryFn<string | FetchArgs, unknown, ICustomError>,
   endpoints: (builder) => ({
-    getUserById: builder.query<IUser, number>({
-      query: (id) => `/user/${id}`,
+    getUserByIdOrName: builder.mutation<IUser, string>({
+      query: (query) => `/user?idOrName=${query}`,
     }),
     createUser: builder.mutation<LocalUserType, IUser>({
       query: (user) => ({

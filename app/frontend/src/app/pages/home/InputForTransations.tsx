@@ -8,6 +8,7 @@ import { userApi } from '../../store/user/apiService';
 
 export default function InputForTransactions() {
   const [createTransaction] = transactionApi.useCreateTransactionMutation();
+  const [getUserByIdOrName] = userApi.useGetUserByIdOrNameMutation();
   const user = getUserFromLocalStorage();
   const {
     register,
@@ -18,18 +19,18 @@ export default function InputForTransactions() {
     resolver: yupResolver(transactionSchema),
   });
 
-  // const onSubmitHandler = async (data: TransactionType) => {
-  //   const pack = {
-  //     value: data.value,
-  //     debitedAccountId: user.username,
-  //     creditedAccountId: data.receiver
-  //   };
-  //   await createTransaction()
-  //     .unwrap()
-  //     .then()
-  //     .catch((error) => {});
-  //   reset();
-  // };
+  const onSubmitHandler = async (data: TransactionType) => {
+    const receiver = await getUserByIdOrName(data.receiver);
+    console.log('🚀 ~ onSubmitHandler ~ receiver', receiver);
+    // const transactionData = {
+    //   value: data.value,
+    //   debitedAccountId: user.id,
+    //   creditedAccountId: receiver.id,
+    // };
+    // console.log('🚀 ~ onSubmitHandler ~ transactionData', transactionData);
+    // await createTransaction(transactionData);
+    // reset();
+  };
 
   return (
     <section className="form">

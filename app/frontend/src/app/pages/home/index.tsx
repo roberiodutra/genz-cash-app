@@ -4,9 +4,22 @@ import Header from '../components/Header';
 import TransactionCard from './TransactionCard';
 import { userApi } from '../../store/user/apiService';
 import InputForTransactions from './InputForTransations';
+import { useAppDispatch } from '../../store/hooks/useAppDispatch';
+import { setToken } from '../../store/user/userSlice';
+import { getUserFromLocalStorage } from '../../utils/localStorage';
 
 export default function Home() {
+  const user = getUserFromLocalStorage();
+  const dispatch = useAppDispatch();
   const questions: [] = [];
+
+  useEffect(() => {
+    if (user) {
+      const { username, token } = user;
+      dispatch(setToken({ username, token }));
+    }
+  }, [user]);
+
   return (
     <main>
       <Header />
