@@ -1,7 +1,6 @@
-import NavHome from "./navButtons/NavMemberArea";
-import NavLogin from "./navButtons/NavLogin";
-import NavMemberArea from "./navButtons/NavHome";
-import NavSocialMedia from "./navButtons/NavSocialMedia";
+import NavHome from './navButtons/NavMemberArea';
+import NavLogin from './navButtons/NavLogin';
+import NavMemberArea from './navButtons/NavHome';
 
 export default function Header() {
   return (
@@ -14,7 +13,6 @@ export default function Header() {
         <NavMemberArea />
         <NavLogin />
       </div>
-      <NavSocialMedia />
     </header>
   );
 }

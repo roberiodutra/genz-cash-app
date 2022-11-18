@@ -25,7 +25,6 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
   public async create(
     username: string,
     password: string,
-    accountId: number,
   ) {
     const parsed = UserSchema.safeParse({ username, password });
     if (!parsed.success) throw parsed.error;
@@ -34,12 +33,10 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
     if (userExists) throw new Error(ErrorTypes.UserExists);
 
 
-    const userInfo = await this.model.create(
-      { username, password, accountId }
-    );
+    const userInfo = await this.model.create({ username, password });
 
-    const token = tokenGenerator(userInfo);
-    return { ...userInfo, ...token };
+    const token = tokenGenerator(userInfo.dataValues);
+    return { ...userInfo.dataValues, ...token };
   }
 
   public async getAll() {

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { dataType } from '../../types/dataType';
 import { removeUser } from '../../utils/localStorage';
 import { useNavigate, useLocation } from 'react-router-dom';
-import apiService from '../../services/apiService';
 
 export default function TransactionCard({
   data: { question, status, _id, author, answer },

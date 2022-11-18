@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { loginSchema } from '../../schemas/loginSchema';
+import { userSchema } from '../../schemas/userSchema';
 import { UserLoginType } from '../../types/UserLoginType';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -21,7 +21,7 @@ export default function Login() {
     reset,
     formState: { errors },
   } = useForm<UserLoginType>({
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(userSchema),
   });
 
   useEffect(() => {
@@ -29,8 +29,8 @@ export default function Login() {
     if (error && 'data' in error) setErrLogin(error.data.message);
   }, [user, error]);
 
-  const onSubmitHandler = (userInfo: UserLoginType) => {
-    loginUser(userInfo);
+  const onSubmitHandler = async (userInfo: UserLoginType) => {
+    await loginUser(userInfo);
     reset();
   };
   return (

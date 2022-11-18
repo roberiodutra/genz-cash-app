@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { transactionSchema } from '../../schemas/transationSchema';
 import { TransactionType } from '../../types/TransactionType';
-import apiService from '../../services/apiService';
 
 export default function QuestionForm() {
   const {

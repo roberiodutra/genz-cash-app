@@ -6,14 +6,23 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { LocalUserType } from "../../types/LocalUserType";
 import { saveUserOnLocalStorage } from "../../utils/localStorage";
+import { RootState } from "../types";
 import { ICustomError } from "./interfaces/ICustomError";
 import { IUser } from "./interfaces/IUser";
+import { IUserAccount } from "./interfaces/IUserAccount";
 
 export const userApi = createApi({
   reducerPath: "userApi",
-  baseQuery: fetchBaseQuery(
-    { baseUrl: "http://localhost:3001" },
-  ) as BaseQueryFn<string | FetchArgs, unknown, ICustomError>,
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:3001",
+    prepareHeaders: (headers, { getState }) => {
+      const token = (getState() as RootState).user.token;
+
+      headers.set('authorization', token || '');
+
+      return headers;
+    },
+  }) as BaseQueryFn<string | FetchArgs, unknown, ICustomError>,
   endpoints: (builder) => ({
     getUserById: builder.query<IUser, number>({
       query: (id) => `/user/${id}`,
@@ -40,11 +49,11 @@ export const userApi = createApi({
         return response;
       },
     }),
-    updateUser: builder.mutation<IUser, IUser>({
-      query: (user) => ({
-        url: `/user/${user.id}`,
-        body: user,
-        method: "PATCH",
+    updateUser: builder.mutation<IUser, IUserAccount>({
+      query: ({ id, ...rest }) => ({
+        url: `/user/${id}`,
+        body: rest,
+        method: "PUT",
       }),
     }),
     deleteUser: builder.mutation<void, number>({

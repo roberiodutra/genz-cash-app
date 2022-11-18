@@ -4,5 +4,11 @@ import { initialState } from "./initialState";
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    setToken: (state, { payload }) => {
+      state.token = payload;
+    }
+  },
 });
+
+export const { setToken } = userSlice.actions;
