@@ -2,6 +2,7 @@ import { IUser } from "./interfaces/IUser";
 
 export const initialState: IUser = {
   username: '',
-  password: '',
+  account: 0,
+  balance: 0,
   token: '',
 };

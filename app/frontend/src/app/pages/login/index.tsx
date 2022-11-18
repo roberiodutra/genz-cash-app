@@ -18,7 +18,8 @@ export default function Login() {
 
   useEffect(() => {
     if (user) {
-      dispatch(setToken(user.token));
+      const { username, token } = user;
+      dispatch(setToken({ username, token }));
       navigate('/');
     }
     if (error && 'data' in error) setErrLogin(error.data.message);

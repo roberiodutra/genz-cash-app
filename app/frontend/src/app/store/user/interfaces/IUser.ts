@@ -1,7 +1,7 @@
 export interface IUser {
   id?: number;
   username: string;
-  password: string;
-  accountId?: number;
+  account?: number;
+  balance?: number;
   token?: string;
 }

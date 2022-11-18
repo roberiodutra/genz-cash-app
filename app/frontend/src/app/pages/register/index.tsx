@@ -21,7 +21,8 @@ export default function Register() {
 
   useEffect(() => {
     if (user) {
-      dispatch(setToken(user.token));
+      const { username, token } = user;
+      dispatch(setToken({ username, token }));
       navigate('/');
     }
   }, [user]);
