@@ -1,27 +1,21 @@
-import { useNavigate, useLocation } from "react-router-dom";
-import { useQuestions } from "../../context/providers/QuestionProvider";
-import { useUsers } from "../../context/providers/UserProvider";
-import { removeUser } from "../../utils/localStorage";
+import { useNavigate, useLocation } from 'react-router-dom';
+import { removeUser } from '../../../utils/localStorage';
 
 export default function NavMemberArea() {
-  const { user, setUser } = useUsers();
-  const { memberPage, setMemberPage } = useQuestions();
   const navigate = useNavigate();
   const location = useLocation();
-  const navOptions = { admin: "/admin", member: "/member" };
-  const role = user?.role as keyof typeof navOptions;
+  const navOptions = { admin: '/admin', member: '/member' };
   const path = location.pathname;
-  const navMember = { add: "addQuestion", own: "myQuestions" };
-  const titleByUserRole = role === "admin" ? "Dashboard" : "My Questions";
+  const navMember = { add: 'addQuestion', own: 'myQuestions' };
 
   return (
     <div>
-      {path === navOptions[role] ? (
+      {/* {path === navOptions[role] ? (
         <div>
           <button
             className="navbar-buttons"
             type="button"
-            onClick={() => navigate("/")}
+            onClick={() => navigate('/')}
           >
             Home
           </button>
@@ -48,13 +42,13 @@ export default function NavMemberArea() {
             onClick={() => {
               removeUser();
               setUser(null);
-              navigate("/");
+              navigate('/');
             }}
           >
             Logout
           </button>
         </div>
-      ) : null}
+      ) : null} */}
     </div>
   );
 }

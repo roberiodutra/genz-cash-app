@@ -3,17 +3,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { UserRegisterType } from '../../types/UserRegisterType';
 import { registerSchema } from '../../schemas/registerSchema';
 import { useNavigate } from 'react-router-dom';
-import { saveUser } from '../../utils/localStorage';
-import { useUsers } from '../../context/providers/UserProvider';
+// import { saveUser } from '../../utils/localStorage';
 import { useState } from 'react';
 import apiService from '../../services/apiService';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function Register() {
   const [errorRegister, setErrorRegister] = useState('');
   const navigate = useNavigate();
-  const { setUser } = useUsers();
   const {
     register,
     handleSubmit,
@@ -26,8 +24,6 @@ export default function Register() {
     apiService
       .signUP(data)
       .then(({ data }) => {
-        setUser(data);
-        saveUser(data);
         navigate('/');
       })
       .catch((_err) => {

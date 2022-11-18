@@ -17,9 +17,9 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
     const checkPassword = await Bcrypt.comparePass(password, userInfo.password);
     if (!checkPassword) throw new Error(ErrorTypes.WrongPassword);
 
-    const token = tokenGenerator(userInfo);
+    const token = tokenGenerator(userInfo.dataValues);
 
-    return { ...userInfo, ...token };
+    return { ...userInfo.dataValues, ...token };
   }
 
   public async create(

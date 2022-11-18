@@ -1,11 +1,12 @@
-import ContextProvider from './context/ContextProvider';
+import { Provider } from 'react-redux';
+import { store } from './store';
 import Routes from './routes/';
 
 function App() {
   return (
-    <ContextProvider>
+    <Provider store={store}>
       <Routes />
-    </ContextProvider>
+    </Provider>
   );
 }
 

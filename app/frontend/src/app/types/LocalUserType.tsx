@@ -1,8 +1,7 @@
 export type LocalUserType = {
-  id: string;
-  email: string;
+  id: number;
+  username: string;
   password: string;
-  fullName: string;
-  role: string;
+  accountId: number;
   token: string;
 };

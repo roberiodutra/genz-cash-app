@@ -3,17 +3,18 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from '../../schemas/loginSchema';
 import { UserLoginType } from '../../types/UserLoginType';
 import { useNavigate } from 'react-router-dom';
-import { useUsers } from '../../context/providers/UserProvider';
 import { useEffect, useState } from 'react';
-import { saveUser, getUser } from '../../utils/localStorage';
-import apiService from '../../services/apiService';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+// import { saveUser, getUser } from '../../utils/localStorage';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { userApi } from '../../store/user/apiService';
+import { getUserFromLocalStorage } from '../../utils/localStorage';
 
 export default function Login() {
   const [errLogin, setErrLogin] = useState('');
   const navigate = useNavigate();
-  const { setUser } = useUsers();
+  const [loginUser, { data, error }] = userApi.useLoginUserMutation();
+  const user = getUserFromLocalStorage();
   const {
     register,
     handleSubmit,
@@ -24,26 +25,12 @@ export default function Login() {
   });
 
   useEffect(() => {
-    const localUser = getUser();
-    if (localUser) {
-      (() => {
-        setUser({ ...localUser });
-        navigate('/');
-      })();
-    }
-  }, [navigate, setUser]);
+    if (user) navigate('/');
+    if (error && 'data' in error) setErrLogin(error.data.message);
+  }, [user, error]);
 
-  const onSubmitHandler = (data: UserLoginType) => {
-    apiService
-      .signIN(data)
-      .then(({ data }) => {
-        setUser(data);
-        saveUser(data);
-        navigate('/');
-      })
-      .catch((_e) => {
-        setErrLogin('User not found');
-      });
+  const onSubmitHandler = (userInfo: UserLoginType) => {
+    loginUser(userInfo);
     reset();
   };
   return (

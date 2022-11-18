@@ -1,36 +1,21 @@
-import { useRoutes } from "react-router-dom";
-import Admin from "../pages/admin";
-import Home from "../pages/home";
-import Login from "../pages/login";
-import Member from "../pages/member";
-import Question from "../pages/question";
-import Register from "../pages/register";
+import { useRoutes } from 'react-router-dom';
+import Home from '../pages/home';
+import Login from '../pages/login';
+import Register from '../pages/register';
 
 function Routes() {
   const routes = useRoutes([
     {
-      path: "/",
+      path: '/',
       element: <Home />,
     },
     {
-      path: "/sign_in",
+      path: '/sign_in',
       element: <Login />,
     },
     {
-      path: "/sign_up",
+      path: '/sign_up',
       element: <Register />,
-    },
-    {
-      path: "/member",
-      element: <Member />,
-    },
-    {
-      path: "/admin",
-      element: <Admin />,
-    },
-    {
-      path: "/question/:id",
-      element: <Question />,
     },
   ]);
 

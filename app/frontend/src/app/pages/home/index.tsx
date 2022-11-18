@@ -1,17 +1,11 @@
-import { useEffect } from "react";
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
-import Pagination from "../../components/Pagination";
-import { useQuestions } from "../../context/providers/QuestionProvider";
-import QuestionCard from "../member/components/QuestionCard";
+import { useEffect } from 'react';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import TransactionCard from './TransactionCard';
+import { userApi } from '../../store/user/apiService';
 
 export default function Home() {
-  const { questions, setStatus } = useQuestions();
-
-  useEffect(() => {
-    setStatus("published");
-  }, []);
-
+  const questions: [] = [];
   return (
     <main>
       <Header />
@@ -24,10 +18,9 @@ export default function Home() {
           </tr>
         </thead>
         {questions?.map((Q, I) => (
-          <QuestionCard key={I} data={Q} />
+          <TransactionCard key={I} data={Q} />
         ))}
       </table>
-      <Pagination />
       <Footer />
     </main>
   );
