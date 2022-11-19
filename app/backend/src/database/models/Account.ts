@@ -1,6 +1,6 @@
 import { INTEGER, DECIMAL, Model } from 'sequelize';
 import db from '.';
-import Transactions from './Transaction';
+import Transaction from './Transaction';
 
 export default class Account extends Model {
   declare id: number;
@@ -24,6 +24,15 @@ Account.init({
   timestamps: false,
 });
 
-Account.hasMany(Transactions);
-Transactions.belongsTo(Account);
-Transactions.belongsTo(Account);
+Account.hasMany(Transaction, {
+  as: 'debitTransactions',
+  foreignKey: 'debitedAccountId',
+});
+
+Account.hasMany(Transaction, {
+  as: 'creditTransactions',
+  foreignKey: 'creditedAccountId',
+});
+
+Transaction.belongsTo(Account, { foreignKey: 'debitedAccountId' });
+Transaction.belongsTo(Account, { foreignKey: 'creditedAccountId' });

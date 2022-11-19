@@ -16,7 +16,9 @@ class AccountController {
   };
 
   public update = async (req: Request, res: Response) => {
-    const request = await this.service.update(req.params.id, req.body);
+    const { balance } = req.body;
+    const { id } = req.params;
+    const request = await this.service.update(id, balance);
     return res.status(StatusCodes.OK).json(request);
   };
 }

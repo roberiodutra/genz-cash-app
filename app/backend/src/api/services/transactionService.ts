@@ -1,8 +1,8 @@
 import { ITransaction } from "../interfaces/ITransaction";
-import Transactions from "../../database/models/Transaction";
+import Transaction from "../../database/models/Transaction";
 
 class TransactionService {
-  constructor(private model = Transactions) { }
+  constructor(private model = Transaction) { }
 
 
   public async create(reqbody: ITransaction) {

@@ -1,8 +1,7 @@
-import Users from "../../database/models/User";
-import Accounts from "../../database/models/Account";
+import Account from "../../database/models/Account";
 
 class AccountService {
-  constructor(private model = Accounts) { }
+  constructor(private model = Account) { }
 
   public async create() {
     const accountData = await this.model.create();
@@ -10,21 +9,18 @@ class AccountService {
   }
 
   public async getOne(id: string) {
-    // await this.model.findOne({
-    //   where: { id },
-    //   include: {
-    //     model: Users,
-    //   }
-    // }).then().catch((error) => {
-    //   console.log('🚀 ~ UserService ~ login ~ error', error);
-    // });
     const request = await this.model.findOne({
       where: { id },
+      include: { all: true },
     });
     return request;
   }
 
-  public async update(id: string, balance: string) {
+  public async update(id: string, balance: number) {
+    this.model.update({ balance }, { where: { id } }).then().catch((error) => {
+      console.log('🚀 ~ AccountService ~ update ~ error', error);
+
+    });
     await this.model.update({ balance }, { where: { id } });
   }
 }
