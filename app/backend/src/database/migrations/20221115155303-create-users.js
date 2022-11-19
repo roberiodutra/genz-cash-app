@@ -17,6 +17,10 @@ module.exports = {
       },
       accountId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'accounts',
+          key: 'id'
+        },
       },
     });
   },

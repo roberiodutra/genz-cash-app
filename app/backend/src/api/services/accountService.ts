@@ -1,4 +1,5 @@
-import Accounts from "../../database/models/Accounts";
+import Users from "../../database/models/User";
+import Accounts from "../../database/models/Account";
 
 class AccountService {
   constructor(private model = Accounts) { }
@@ -9,8 +10,16 @@ class AccountService {
   }
 
   public async getOne(id: string) {
+    // await this.model.findOne({
+    //   where: { id },
+    //   include: {
+    //     model: Users,
+    //   }
+    // }).then().catch((error) => {
+    //   console.log('🚀 ~ UserService ~ login ~ error', error);
+    // });
     const request = await this.model.findOne({
-      where: { id }
+      where: { id },
     });
     return request;
   }

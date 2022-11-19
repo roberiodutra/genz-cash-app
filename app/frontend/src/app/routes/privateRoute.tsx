@@ -18,19 +18,19 @@ export const PrivateRoute = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (user) {
-      async () => {
+      (async () => {
         const { username, token, password } = user;
+        dispatch(setToken({ username, token }));
         const validUser = await getUserByIdOrName(username).unwrap();
-        console.log('🚀 ~ useAccountState ~ validUser', validUser);
         if (validUser.password === password) {
-          dispatch(setToken({ username, token }));
-          dispatch(setAccountId(validUser.account));
+          dispatch(setAccountId(validUser.accountId));
           dispatch(setAccountBalance(+validUser.balance));
         } else {
           removeUserFromLocalStorage();
+          <Navigate to="/sign_in" />;
         }
-      };
+      })();
     }
-  }, [user]);
+  }, []);
   return user ? <Outlet /> : <Navigate to="/sign_in" />;
 };

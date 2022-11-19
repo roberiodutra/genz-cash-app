@@ -1,6 +1,6 @@
 import { DATE, INTEGER, DECIMAL, Model } from 'sequelize';
 import db from '.';
-import Accounts from './Accounts';
+import Accounts from './Account';
 
 export default class Transactions extends Model {
   declare id: number;
@@ -8,11 +8,6 @@ export default class Transactions extends Model {
   declare debitedAccountId: number;
   declare creditedAccountId: number;
   declare createdAt: string;
-
-  static associate() {
-    this.belongsTo(Accounts, { foreignKey: 'debitedAccountId' });
-    this.belongsTo(Accounts, { foreignKey: 'creditedAccountId' });
-  }
 }
 
 Transactions.init({
@@ -26,29 +21,13 @@ Transactions.init({
     allowNull: false,
     defaultValue: 0,
   },
-  debitedAccountId: {
-    allowNull: false,
-    type: INTEGER,
-    references: {
-      model: Accounts,
-      key: 'id'
-    },
-  },
-  creditedAccountId: {
-    allowNull: false,
-    type: INTEGER,
-    references: {
-      model: Accounts,
-      key: 'id'
-    },
-  },
   createdAt: {
     allowNull: false,
     type: DATE
   },
 }, {
   sequelize: db,
-  modelName: 'Transactions',
+  modelName: 'Transaction',
   tableName: 'transactions',
   timestamps: true,
   updatedAt: false,

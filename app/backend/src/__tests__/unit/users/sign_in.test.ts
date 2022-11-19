@@ -2,7 +2,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import chaiHttp from 'chai-http';
 import server from '../../../api/app';
-import Users from '../../../database/models/Users';
+import Users from '../../../database/models/User';
 import {
   userLogin,
   wrongUserLogin,

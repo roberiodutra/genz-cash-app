@@ -1,4 +1,4 @@
-import Users from "../../database/models/Users";
+import Users from "../../database/models/User";
 import { IRead } from "../interfaces/IRead";
 import { IUser } from "../interfaces/IUser";
 import { IWrite } from "../interfaces/IWrite";
@@ -6,13 +6,19 @@ import { ErrorTypes } from "../helpers/ErrorCatalog";
 import Bcrypt from "../helpers/Bcrypt";
 import tokenGenerator from "../helpers/TokenGenerator";
 import { UserSchema } from "../types/userType";
-import { Op } from "sequelize";
+import Account from "../../database/models/Account";
 
 class UserService implements IRead<IUser>, IWrite<IUser> {
   constructor(private model = Users) { }
 
   public async login(username: string, password: string) {
-    const userInfo = await this.model.findOne({ where: { username } });
+    const userInfo = await this.model.findOne({
+      where: { username },
+      include: {
+        model: Account,
+        attributes: ['balance'],
+      },
+    });
     if (!userInfo) throw new Error(ErrorTypes.UserNotFound);
 
     const checkPassword = await Bcrypt.comparePass(password, userInfo.password);

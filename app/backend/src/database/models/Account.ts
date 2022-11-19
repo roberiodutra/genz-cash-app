@@ -1,19 +1,13 @@
 import { INTEGER, DECIMAL, Model } from 'sequelize';
 import db from '.';
-import Transactions from './Transactions';
-import Users from './Users';
+import Transactions from './Transaction';
 
-export default class Accounts extends Model {
+export default class Account extends Model {
   declare id: number;
   declare balance: string;
-
-  static associate() {
-    this.hasOne(Users);
-    this.hasMany(Transactions);
-  }
 }
 
-Accounts.init({
+Account.init({
   id: {
     type: INTEGER,
     primaryKey: true,
@@ -26,7 +20,10 @@ Accounts.init({
   },
 }, {
   sequelize: db,
-  modelName: 'Accounts',
-  tableName: 'accounts',
+  modelName: 'accounts',
   timestamps: false,
 });
+
+Account.hasMany(Transactions);
+Transactions.belongsTo(Account);
+Transactions.belongsTo(Account);

@@ -1,20 +1,15 @@
 import { INTEGER, STRING, Model } from 'sequelize';
 import db from '.';
 import Bcrypt from '../../api/helpers/Bcrypt';
-import Accounts from './Accounts';
+import Account from './Account';
 
-export default class Users extends Model {
+export default class User extends Model {
   declare id: number;
   declare username: string;
   declare password: string;
-  declare accountId: number;
-
-  static associate() {
-    this.belongsTo(Accounts, { foreignKey: 'accountId' });
-  }
 }
 
-Users.init({
+User.init({
   id: {
     type: INTEGER,
     primaryKey: true,
@@ -28,25 +23,20 @@ Users.init({
     type: STRING,
     allowNull: false,
   },
-  accountId: {
-    type: INTEGER,
-    references: {
-      model: Accounts,
-      key: 'id'
-    },
-  },
 }, {
   sequelize: db,
-  modelName: 'Users',
-  tableName: 'users',
+  modelName: 'users',
   timestamps: false,
 });
 
-Users.addHook(
+User.addHook(
   'beforeSave',
-  async (user: Users): Promise<void> => {
+  async (user: User): Promise<void> => {
     if (user.password) {
       user.password = await Bcrypt.hashPass(user.password);
     }
   }
 );
+
+User.belongsTo(Account);
+Account.hasOne(User);

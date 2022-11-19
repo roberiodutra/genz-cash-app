@@ -2,7 +2,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import chaiHttp from 'chai-http';
 import server from '../../../api/app';
-import Accounts from '../../../database/models/Accounts';
+import Accounts from '../../../database/models/Account';
 import { createdUser } from '../__mocks__/usersMock';
 import { createdAccount } from '../__mocks__/accountsMock';
 

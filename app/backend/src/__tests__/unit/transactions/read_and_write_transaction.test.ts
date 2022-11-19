@@ -2,7 +2,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import chaiHttp from 'chai-http';
 import server from '../../../api/app';
-import Transactions from '../../../database/models/Transactions';
+import Transactions from '../../../database/models/Transaction';
 import { createdUser } from '../__mocks__/usersMock';
 import {
   transactionData,

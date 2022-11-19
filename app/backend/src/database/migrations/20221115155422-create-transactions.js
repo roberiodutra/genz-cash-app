@@ -14,12 +14,18 @@ module.exports = {
         allowNull: false,
       },
       debitedAccountId: {
-        allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'accounts',
+          key: 'id'
+        },
       },
       creditedAccountId: {
-        allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'accounts',
+          key: 'id'
+        },
       },
       createdAt: {
         allowNull: false,

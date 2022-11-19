@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { initialState } from "../initialState";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { initialState } from '../initialState';
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     setToken: (state, { payload }) => {
@@ -10,7 +10,7 @@ export const userSlice = createSlice({
       state.token = payload.token;
     },
     setAccountId: (state, { payload }) => {
-      state.account = payload;
+      state.accountId = payload;
     },
     setAccountBalance: (state, action: PayloadAction<number>) => {
       state.balance += +action.payload;

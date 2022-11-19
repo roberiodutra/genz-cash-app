@@ -1,5 +1,4 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { removeUser } from '../../../utils/localStorage';
 
 export default function NavMemberArea() {
   const navigate = useNavigate();

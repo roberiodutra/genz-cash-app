@@ -6,6 +6,6 @@ export interface IUser {
 }
 
 export interface IUserFullData extends IUser {
-  account: number;
+  accountId: number;
   balance: number;
 }

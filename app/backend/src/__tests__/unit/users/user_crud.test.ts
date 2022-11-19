@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import chaiHttp from 'chai-http';
 import server from '../../../api/app';
 import { createdUser } from '../__mocks__/usersMock';
-import Users from '../../../database/models/Users';
+import Users from '../../../database/models/User';
 
 chai.use(chaiHttp);
 const { expect } = chai;

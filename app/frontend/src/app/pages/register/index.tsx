@@ -2,14 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { userApi } from '../../store/user/apiService';
 import { accountApi } from '../../store/account/apiService';
-import { getUserFromLocalStorage } from '../../utils/localStorage';
-import { setToken } from '../../store/user/userSlice';
-import { useAppDispatch } from '../../store/hooks/useAppDispatch';
 import { UserType } from '../../types/UserType';
-import { setAccountBalance, setAccountId } from '../../store/user/userSlice';
 import Header from '../components/Header';
 import Form from '../components/Form';
 import Footer from '../components/Footer';
+import { useAppDispatch } from '../../store/hooks/useAppDispatch';
+import { setToken } from '../../store/user/userSlice';
+import { getUserFromLocalStorage } from '../../utils/localStorage';
 
 export default function Register() {
   const [errorRegister, setErrorRegister] = useState('');
@@ -35,8 +34,6 @@ export default function Register() {
         if (newUser.id) {
           const account = await createAccount().unwrap();
           if (account.id) {
-            dispatch(setAccountId(account.id));
-            dispatch(setAccountBalance(+account.balance));
             await updateUser({
               id: newUser.id,
               accountId: account.id,
