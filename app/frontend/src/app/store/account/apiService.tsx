@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../types';
 import { ICustomError } from '../user/interfaces/ICustomError';
-import { IAccount, IAccountBalance } from './interfaces/IAccount';
+import { IAccount, IFullAccount } from './interfaces/IAccount';
 
 export const accountApi = createApi({
   reducerPath: 'accountApi',
@@ -21,7 +21,7 @@ export const accountApi = createApi({
     },
   }) as BaseQueryFn<string | FetchArgs, unknown, ICustomError>,
   endpoints: (builder) => ({
-    getAccountById: builder.mutation<IAccount, number>({
+    getAccountById: builder.mutation<IFullAccount, number>({
       query: (id) => `/account/${id}`,
     }),
     createAccount: builder.mutation<IAccount, void>({
@@ -30,12 +30,14 @@ export const accountApi = createApi({
         method: 'POST',
       }),
     }),
-    updateAccount: builder.mutation<IAccount, IAccountBalance>({
-      query: ({ id, balance }) => ({
-        url: `/account/${id}`,
-        body: { balance },
-        method: 'PUT',
-      }),
-    }),
+    updateAccount: builder.mutation<IAccount, { id?: number; balance: number }>(
+      {
+        query: ({ id, balance }) => ({
+          url: `/account/${id}`,
+          body: { balance },
+          method: 'PUT',
+        }),
+      }
+    ),
   }),
 });

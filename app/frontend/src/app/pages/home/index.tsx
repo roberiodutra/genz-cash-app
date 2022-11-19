@@ -7,6 +7,7 @@ import Balance from '../components/Balance';
 import { useAppSelector } from '../../store/hooks/useAppSelector';
 
 export default function Home() {
+  const { transactions } = useAppSelector((store) => store.user);
   return (
     <main>
       <Header />
@@ -20,7 +21,12 @@ export default function Home() {
             <th>Date</th>
           </tr>
         </thead>
-        <TransactionCard />
+        {[
+          ...transactions.creditTransactions,
+          ...transactions.debitTransactions,
+        ].map((trans, index) => (
+          <TransactionCard key={index} trans={trans} />
+        ))}
       </table>
       <Footer />
     </main>

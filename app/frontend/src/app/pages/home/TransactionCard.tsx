@@ -1,23 +1,37 @@
 import { useEffect, useState } from 'react';
 import moment from 'moment';
-import {
-  getUserFromLocalStorage,
-  removeUserFromLocalStorage,
-} from '../../utils/localStorage';
+import { getUserFromLocalStorage } from '../../utils/localStorage';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ITransaction } from '../../store/transaction/interfaces/ITransactions';
-import { useAppSelector } from '../../store/hooks/useAppSelector';
+import { accountApi } from '../../store/account/apiService';
+import { IAccount } from '../../store/account/interfaces/IAccount';
 
-export default function TransactionCard() {
-  const { transactions } = useAppSelector((store) => store.user);
+type ITrans = {
+  trans: ITransaction;
+};
+
+export default function TransactionCard({ trans }: ITrans) {
+  const [getAccountById] = accountApi.useGetAccountByIdMutation();
   const user = getUserFromLocalStorage();
-  console.log('🚀 ~ TransactionCard ~ transactions', transactions);
-  const [admin, setAdmin] = useState(false);
+  const [transactionUserName, setTransactionUserName] = useState('');
   const [owner, setOwner] = useState(false);
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname;
+
+  useEffect(() => {
+    if (trans) {
+      (async () => {
+        const uname = await getAccountById(
+          user.id === trans?.debitedAccountId
+            ? trans?.creditedAccountId
+            : trans?.debitedAccountId
+        ).unwrap();
+        setTransactionUserName(uname.user.username);
+      })();
+    }
+  }, [trans]);
 
   const handleToggle = () => {
     setNavbarOpen((prev) => !prev);
@@ -25,20 +39,15 @@ export default function TransactionCard() {
 
   return (
     <tbody>
-      {[
-        ...transactions.creditTransactions,
-        ...transactions.debitTransactions,
-      ].map((trans, index) => (
-        <tr key={index}>
-          <td>
-            {trans.creditedAccountId === user.id
-              ? `received from @${trans.debitedAccountId}`
-              : `sent to @${trans.creditedAccountId}`}
-          </td>
-          <td>{`$${Number(trans.value).toFixed(2)}`}</td>
-          <td>{moment(trans.createdAt).format('MMM Do YY')}</td>
-        </tr>
-      ))}
+      <tr>
+        <td>
+          {trans.creditedAccountId === user.id
+            ? `received from @${transactionUserName}`
+            : `sent to @${transactionUserName}`}
+        </td>
+        <td>{`$${Number(trans.value).toFixed(2)}`}</td>
+        <td>{moment(trans.createdAt).format('MMM Do YY')}</td>
+      </tr>
     </tbody>
   );
 }
