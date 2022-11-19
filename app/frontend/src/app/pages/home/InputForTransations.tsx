@@ -16,6 +16,7 @@ export default function InputForTransactions() {
   const [updateAccount] = accountApi.useUpdateAccountMutation();
   const [getUserByIdOrName] = userApi.useGetUserByIdOrNameMutation();
   const [errUserNotFound, setErrUserNotFound] = useState('');
+  const [isYourself, setIsYourself] = useState('');
   const user = getUserFromLocalStorage();
   const { balance } = useAppSelector((store) => store.user);
   const dispatch = useAppDispatch();
@@ -29,6 +30,10 @@ export default function InputForTransactions() {
   });
 
   const onSubmitHandler = async (data: TransactionType) => {
+    if (data.receiver === user.username) {
+      return setIsYourself('Cannot send to yourself');
+    }
+
     const receiver = await getUserByIdOrName(data.receiver).unwrap();
     if (!receiver) setErrUserNotFound('User Not Found');
 
@@ -71,13 +76,16 @@ export default function InputForTransactions() {
             <label htmlFor="receiver" className="form-label">
               Receiver
             </label>
-            <div>{errUserNotFound || errors.receiver?.message}</div>
+            <div>
+              {isYourself || errUserNotFound || errors.receiver?.message}
+            </div>
           </div>
           <div className="form-box">
             <input
               className="form-input"
               id="value"
-              type="text"
+              type="number"
+              max={balance}
               {...register('value')}
               required
             />
