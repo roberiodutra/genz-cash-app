@@ -1,31 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import TransactionCard from './TransactionCard';
-import { userApi } from '../../store/user/apiService';
 import InputForTransactions from './InputForTransations';
-import { useAppDispatch } from '../../store/hooks/useAppDispatch';
-import { setToken } from '../../store/user/userSlice';
-import { getUserFromLocalStorage } from '../../utils/localStorage';
+import Balance from '../components/Balance';
+import { useAppSelector } from '../../store/hooks/useAppSelector';
 
 export default function Home() {
-  const questions: [] = [];
-
   return (
     <main>
       <Header />
+      <Balance />
       <InputForTransactions />
-      <table className="questions-table">
+      <table className="transactions-table">
         <thead>
           <tr>
-            <th>Questions</th>
-            <th>Answers</th>
-            <th>Author</th>
+            <th>Detail</th>
+            <th>Value</th>
+            <th>Date</th>
           </tr>
         </thead>
-        {questions?.map((Q, I) => (
-          <TransactionCard />
-        ))}
+        <TransactionCard />
       </table>
       <Footer />
     </main>

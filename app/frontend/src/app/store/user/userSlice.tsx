@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../initialState';
 
 export const userSlice = createSlice({
@@ -13,9 +13,21 @@ export const userSlice = createSlice({
       state.accountId = payload;
     },
     setAccountBalance: (state, { payload }) => {
-      state.balance = +payload;
+      state.balance = payload;
+    },
+    setTransactions: (state, { payload }) => {
+      state.transactions = payload;
+    },
+    setRefresh: (state) => {
+      state.refresh = !state.refresh;
     },
   },
 });
 
-export const { setToken, setAccountId, setAccountBalance } = userSlice.actions;
+export const {
+  setToken,
+  setAccountId,
+  setAccountBalance,
+  setTransactions,
+  setRefresh,
+} = userSlice.actions;

@@ -1,8 +1,17 @@
 import { useEffect, useState } from 'react';
-import { removeUserFromLocalStorage } from '../../utils/localStorage';
+import moment from 'moment';
+import {
+  getUserFromLocalStorage,
+  removeUserFromLocalStorage,
+} from '../../utils/localStorage';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { ITransaction } from '../../store/transaction/interfaces/ITransactions';
+import { useAppSelector } from '../../store/hooks/useAppSelector';
 
 export default function TransactionCard() {
+  const { transactions } = useAppSelector((store) => store.user);
+  const user = getUserFromLocalStorage();
+  console.log('🚀 ~ TransactionCard ~ transactions', transactions);
   const [admin, setAdmin] = useState(false);
   const [owner, setOwner] = useState(false);
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -10,34 +19,26 @@ export default function TransactionCard() {
   const location = useLocation();
   const path = location.pathname;
 
-  // useEffect(() => {
-  //   if (user) {
-  //     apiService.getUserById(user.id).then(({ data }) => {
-  //       if (user.username !== data.username) {
-  //         removeUser();
-  //         setUser(null);
-  //         navigate('/sign_in');
-  //       }
-  //       data.role === 'admin' ? setAdmin(true) : null;
-  //     });
-
-  //     apiService.getQuestionById(_id).then(({ data }) => {
-  //       if (user.id === data.userId || user.role === 'admin') {
-  //         setOwner(true);
-  //       }
-  //     });
-  //   }
-  // }, [user]);
-
   const handleToggle = () => {
     setNavbarOpen((prev) => !prev);
   };
 
   return (
     <tbody>
-      <tr>
-        <td>ENVIADO</td>
-      </tr>
+      {[
+        ...transactions.creditTransactions,
+        ...transactions.debitTransactions,
+      ].map((trans, index) => (
+        <tr key={index}>
+          <td>
+            {trans.creditedAccountId === user.id
+              ? `received from @${trans.debitedAccountId}`
+              : `sent to @${trans.creditedAccountId}`}
+          </td>
+          <td>{`$${Number(trans.value).toFixed(2)}`}</td>
+          <td>{moment(trans.createdAt).format('MMM Do YY')}</td>
+        </tr>
+      ))}
     </tbody>
   );
 }

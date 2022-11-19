@@ -16,12 +16,8 @@ export default function Login() {
   }, [error]);
 
   const onSubmitHandler = async (userInfo: UserType) => {
-    await loginUser(userInfo)
-      .unwrap()
-      .then((data) => {
-        console.log('🚀 ~ .then ~ data', data);
-        if (data) navigate('/');
-      });
+    const isUser = await loginUser(userInfo);
+    if (isUser) navigate('/');
   };
 
   return (

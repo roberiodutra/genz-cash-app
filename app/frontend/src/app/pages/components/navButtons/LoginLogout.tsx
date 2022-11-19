@@ -4,7 +4,7 @@ import {
   removeUserFromLocalStorage,
 } from '../../../utils/localStorage';
 
-export default function NavLogin() {
+export default function LoginLogout() {
   const user = getUserFromLocalStorage();
   const navigate = useNavigate();
 
@@ -21,15 +21,7 @@ export default function NavLogin() {
         >
           Logout
         </button>
-      ) : (
-        <button
-          className="navbar-buttons"
-          type="button"
-          onClick={() => navigate('/sign_in')}
-        >
-          Login
-        </button>
-      )}
+      ) : null}
     </div>
   );
 }

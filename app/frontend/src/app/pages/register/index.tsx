@@ -13,7 +13,7 @@ import { getUserFromLocalStorage } from '../../utils/localStorage';
 export default function Register() {
   const [errorRegister, setErrorRegister] = useState('');
   const navigate = useNavigate();
-  const [createUser] = userApi.useCreateUserMutation();
+  const [createUser, { error }] = userApi.useCreateUserMutation();
   const [updateUser] = userApi.useUpdateUserMutation();
   const [createAccount] = accountApi.useCreateAccountMutation();
   const user = getUserFromLocalStorage();
@@ -25,25 +25,20 @@ export default function Register() {
       dispatch(setToken({ username, token }));
       navigate('/');
     }
+    if (error && 'data' in error) setErrorRegister(error.data.message);
   }, [user]);
 
   const onSubmitHandler = async (userInfo: UserType) => {
-    await createUser(userInfo)
-      .unwrap()
-      .then(async (newUser) => {
-        if (newUser.id) {
-          const account = await createAccount().unwrap();
-          if (account.id) {
-            await updateUser({
-              id: newUser.id,
-              accountId: account.id,
-            });
-          }
-        }
-      })
-      .catch((error) => {
-        if (error && 'data' in error) setErrorRegister(error.data.message);
-      });
+    const newUser = await createUser(userInfo).unwrap();
+    if (newUser.id) {
+      const account = await createAccount().unwrap();
+      if (account.id) {
+        await updateUser({
+          id: newUser.id,
+          accountId: account.id,
+        });
+      }
+    }
   };
 
   return (

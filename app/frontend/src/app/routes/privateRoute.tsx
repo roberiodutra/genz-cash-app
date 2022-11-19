@@ -1,11 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAppDispatch } from '../store/hooks/useAppDispatch';
 import { userApi } from '../store/user/apiService';
+import { accountApi } from '../store/account/apiService';
+import { useAppSelector } from '../store/hooks/useAppSelector';
 import {
   setAccountBalance,
   setAccountId,
   setToken,
+  setTransactions,
 } from '../store/user/userSlice';
 import {
   getUserFromLocalStorage,
@@ -13,7 +16,9 @@ import {
 } from '../utils/localStorage';
 
 export const PrivateRoute = () => {
+  const { refresh } = useAppSelector((store) => store.user);
   const [getUserByIdOrName] = userApi.useGetUserByIdOrNameMutation();
+  const [getAccountById] = accountApi.useGetAccountByIdMutation();
   const user = getUserFromLocalStorage();
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -21,8 +26,17 @@ export const PrivateRoute = () => {
       (async () => {
         const { username, token, password } = user;
         dispatch(setToken({ username, token }));
+
         const validUser = await getUserByIdOrName(username).unwrap();
-        if (validUser.password === password) {
+        const userAccount = await getAccountById(user.id).unwrap();
+
+        if (validUser?.password === password) {
+          dispatch(
+            setTransactions({
+              debitTransactions: userAccount?.debitTransactions,
+              creditTransactions: userAccount?.creditTransactions,
+            })
+          );
           dispatch(setAccountId(validUser.accountId));
           dispatch(setAccountBalance(+validUser.account.balance));
         } else {
@@ -31,6 +45,6 @@ export const PrivateRoute = () => {
         }
       })();
     }
-  }, []);
+  }, [refresh]);
   return user ? <Outlet /> : <Navigate to="/sign_in" />;
 };

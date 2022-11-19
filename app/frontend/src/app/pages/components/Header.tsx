@@ -1,17 +1,15 @@
-import NavHome from './navButtons/NavMemberArea';
-import NavLogin from './navButtons/NavLogin';
-import NavMemberArea from './navButtons/NavHome';
+import LoginLogout from './navButtons/LoginLogout';
+import SendMoney from './navButtons/SendMoney';
 
 export default function Header() {
   return (
     <header className="header">
       <a href="/" className="header-logo">
-        DevHelper
+        Genz Cash
       </a>
       <div className="header-navbar">
-        <NavHome />
-        <NavMemberArea />
-        <NavLogin />
+        <SendMoney />
+        <LoginLogout />
       </div>
     </header>
   );

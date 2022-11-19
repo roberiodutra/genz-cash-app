@@ -7,9 +7,9 @@ import { getUserFromLocalStorage } from '../../utils/localStorage';
 import { userApi } from '../../store/user/apiService';
 import { useState } from 'react';
 import { accountApi } from '../../store/account/apiService';
-import { setAccountBalance } from '../../store/user/userSlice';
-import { useAppDispatch } from '../../store/hooks/useAppDispatch';
 import { useAppSelector } from '../../store/hooks/useAppSelector';
+import { useAppDispatch } from '../../store/hooks/useAppDispatch';
+import { setRefresh } from '../../store/user/userSlice';
 
 export default function InputForTransactions() {
   const [createTransaction] = transactionApi.useCreateTransactionMutation();
@@ -17,8 +17,8 @@ export default function InputForTransactions() {
   const [getUserByIdOrName] = userApi.useGetUserByIdOrNameMutation();
   const [errUserNotFound, setErrUserNotFound] = useState('');
   const user = getUserFromLocalStorage();
-  const dispatch = useAppDispatch();
   const { balance } = useAppSelector((store) => store.user);
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -48,6 +48,7 @@ export default function InputForTransactions() {
         id: user.id,
         balance: Number(balance) - Number(data.value),
       });
+      dispatch(setRefresh());
     }
     reset();
   };
