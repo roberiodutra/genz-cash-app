@@ -1,11 +1,18 @@
 import { ITransaction } from "../interfaces/ITransaction";
 import Transaction from "../../database/models/Transaction";
+import { ErrorTypes } from "../helpers/ErrorCatalog";
 
 class TransactionService {
   constructor(private model = Transaction) { }
 
 
   public async create(reqbody: ITransaction) {
+    const existsReceiver = await this.model.findOne({
+      where: { id: reqbody.creditedAccountId },
+    });
+
+    if (!existsReceiver) throw new Error(ErrorTypes.UserNotFound);
+
     const dataValues = await this.model.create({ ...reqbody });
     return dataValues;
   }
