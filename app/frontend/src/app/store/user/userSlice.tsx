@@ -12,8 +12,8 @@ export const userSlice = createSlice({
     setAccountId: (state, { payload }) => {
       state.accountId = payload;
     },
-    setAccountBalance: (state, action: PayloadAction<number>) => {
-      state.balance += +action.payload;
+    setAccountBalance: (state, { payload }) => {
+      state.balance = +payload;
     },
   },
 });

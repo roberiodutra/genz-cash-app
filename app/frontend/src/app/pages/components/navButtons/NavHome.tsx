@@ -8,17 +8,7 @@ export default function NavHome() {
 
   return (
     <div>
-      {/* {user && (path === '/' || path.includes('question')) ? (
-        <div>
-          <button
-            className="navbar-buttons"
-            type="button"
-            onClick={() => navigate(navOptions[role])}
-          >
-            Member Area
-          </button>
-        </div>
-      ) : null} */}
+      <button>Send Money</button>
     </div>
   );
 }

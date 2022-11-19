@@ -17,10 +17,6 @@ class AccountService {
   }
 
   public async update(id: string, balance: number) {
-    this.model.update({ balance }, { where: { id } }).then().catch((error) => {
-      console.log('🚀 ~ AccountService ~ update ~ error', error);
-
-    });
     await this.model.update({ balance }, { where: { id } });
   }
 }

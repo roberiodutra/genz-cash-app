@@ -16,7 +16,7 @@ Account.init({
   balance: {
     type: DECIMAL(10, 2),
     allowNull: false,
-    defaultValue: 100.00,
+    defaultValue: 100,
   },
 }, {
   sequelize: db,

@@ -24,7 +24,7 @@ export const PrivateRoute = () => {
         const validUser = await getUserByIdOrName(username).unwrap();
         if (validUser.password === password) {
           dispatch(setAccountId(validUser.accountId));
-          dispatch(setAccountBalance(+validUser.balance));
+          dispatch(setAccountBalance(+validUser.account.balance));
         } else {
           removeUserFromLocalStorage();
           <Navigate to="/sign_in" />;

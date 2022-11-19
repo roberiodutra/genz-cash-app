@@ -8,7 +8,7 @@ import { LocalUserType } from '../../types/LocalUserType';
 import { saveUserOnLocalStorage } from '../../utils/localStorage';
 import { RootState } from '../types';
 import { ICustomError } from './interfaces/ICustomError';
-import { IUser, IUserFullData } from './interfaces/IUser';
+import { IUser, IUserApiFullData } from './interfaces/IUser';
 import { IUserAccount } from './interfaces/IUserAccount';
 
 export const userApi = createApi({
@@ -24,7 +24,7 @@ export const userApi = createApi({
     },
   }) as BaseQueryFn<string | FetchArgs, unknown, ICustomError>,
   endpoints: (builder) => ({
-    getUserByIdOrName: builder.mutation<IUserFullData, string>({
+    getUserByIdOrName: builder.mutation<IUserApiFullData, string>({
       query: (query) => `/user?idOrName=${query}`,
     }),
     createUser: builder.mutation<LocalUserType, IUser>({

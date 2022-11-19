@@ -51,14 +51,13 @@ class UserService implements IRead<IUser>, IWrite<IUser> {
     return request;
   }
 
-  public async getUserByName() {
-    const request = await this.model.findOne();
-    return request;
-  }
-
   public async getOne(idOrName: string) {
     const request = await this.model.findOne({
-      where: { [Number.isInteger(+idOrName) ? 'id' : 'username']: idOrName }
+      where: { [Number.isInteger(+idOrName) ? 'id' : 'username']: idOrName },
+      include: {
+        model: Account,
+        attributes: ['balance'],
+      },
     });
     return request;
   }

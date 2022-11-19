@@ -5,11 +5,20 @@ import { TransactionType } from '../../types/TransactionType';
 import { transactionApi } from '../../store/transaction/apiService';
 import { getUserFromLocalStorage } from '../../utils/localStorage';
 import { userApi } from '../../store/user/apiService';
+import { useState } from 'react';
+import { accountApi } from '../../store/account/apiService';
+import { setAccountBalance } from '../../store/user/userSlice';
+import { useAppDispatch } from '../../store/hooks/useAppDispatch';
+import { useAppSelector } from '../../store/hooks/useAppSelector';
 
 export default function InputForTransactions() {
   const [createTransaction] = transactionApi.useCreateTransactionMutation();
+  const [updateAccount] = accountApi.useUpdateAccountMutation();
   const [getUserByIdOrName] = userApi.useGetUserByIdOrNameMutation();
+  const [errUserNotFound, setErrUserNotFound] = useState('');
   const user = getUserFromLocalStorage();
+  const dispatch = useAppDispatch();
+  const { balance } = useAppSelector((store) => store.user);
   const {
     register,
     handleSubmit,
@@ -21,12 +30,25 @@ export default function InputForTransactions() {
 
   const onSubmitHandler = async (data: TransactionType) => {
     const receiver = await getUserByIdOrName(data.receiver).unwrap();
-    if (receiver.id)
+    if (!receiver) setErrUserNotFound('User Not Found');
+
+    if (receiver?.id) {
       await createTransaction({
         value: data.value,
         debitedAccountId: user.id,
         creditedAccountId: receiver.id,
       });
+
+      await updateAccount({
+        id: receiver.accountId,
+        balance: Number(receiver.account.balance) + Number(data.value),
+      });
+
+      await updateAccount({
+        id: user.id,
+        balance: Number(balance) - Number(data.value),
+      });
+    }
     reset();
   };
 
@@ -48,7 +70,7 @@ export default function InputForTransactions() {
             <label htmlFor="receiver" className="form-label">
               Receiver
             </label>
-            <div>{errors.receiver?.message}</div>
+            <div>{errUserNotFound || errors.receiver?.message}</div>
           </div>
           <div className="form-box">
             <input
