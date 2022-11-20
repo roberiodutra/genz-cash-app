@@ -22,44 +22,44 @@ export default function Form({
   });
 
   return (
-    <section className="form">
-      <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <fieldset>
-          <legend>
-            <b>Sign Up</b>
-          </legend>
+    <form onSubmit={handleSubmit(onSubmitHandler)}>
+      <fieldset>
+        <legend>
+          <b>Sign Up</b>
+        </legend>
 
-          <div className="form-box">
-            <input
-              className="form-input"
-              id="username"
-              type="text"
-              {...register('username')}
-              required
-            />
-            <label htmlFor="username" className="form-label">
-              Username
-            </label>
-            <div>{isFormError || errors.username?.message}</div>
+        <div className="form-box">
+          <input
+            className="form-input"
+            id="username"
+            type="text"
+            {...register('username')}
+            required
+          />
+          <label htmlFor="username" className="form-label">
+            Username
+          </label>
+          <div className="error-message">
+            {isFormError || errors.username?.message}
           </div>
+        </div>
 
-          <div className="form-box">
-            <input
-              className="form-input"
-              id="password"
-              type="password"
-              {...register('password')}
-              required
-            />
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
-            <div>{errors.password?.message}</div>
-          </div>
+        <div className="form-box">
+          <input
+            className="form-input"
+            id="password"
+            type="password"
+            {...register('password')}
+            required
+          />
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
+          <div className="error-message">{errors.password?.message}</div>
+        </div>
 
-          <button type="submit">{path ? 'Login' : 'Register'}</button>
-        </fieldset>
-      </form>
-    </section>
+        <button type="submit">{path ? 'Login' : 'Register'}</button>
+      </fieldset>
+    </form>
   );
 }
