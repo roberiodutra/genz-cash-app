@@ -6,7 +6,8 @@
   "author": "Robério Dutra",
   "license": "MIT",
   "scripts": {
-    "install:all": "(cd app/backend && npm install)",
+    "install:all": "(cd app/backend && npm install && cd app/frontend && npm install)",
+    "dev": "(cd app/frontend && npm run dev)",
     "compose:up": "(cd app && docker compose up -d --build)",
     "compose:down": "(cd app && docker compose down --remove-orphans)",
     "build": "(cd app/backend && npm run build)",

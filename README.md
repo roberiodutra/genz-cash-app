@@ -95,3 +95,52 @@ $ npm run dev
 <h4>
 Most routes need a valid token. If you want to use it, I suggest that you first create a user in the 'Users' session, copy the token that will be generated, and paste it, clicking on the authorize button.
 </h4>
+
+<br>
+
+<h1 align="center">Genz Cash Frontend</h1>
+
+<br>
+
+<h2 align="center">
+
+[![My Skills](https://skills.thijs.gg/icons?i=js,ts,react,redux,git,sass,jest,vite,nodejs)](https://skills.thijs.gg)
+
+</h2>
+
+<br>
+
+### Technologies
+
+The following tools were used in building this APP:
+
+- [Reactjs]()
+- [Javascript]()
+- [TypeScript]()
+- [Redux]()
+- [SASS]()
+- [Jest]()
+- [Mock Service Worker]()
+- [Yup]()
+- [Node.js](https://nodejs.org/en/)
+- [Vite]()
+
+<br>
+
+### 🎲 Running the FrontEnd
+
+```bash
+# In the root of the project to install dependencies for backend and frontend
+$ npm run install:all
+
+# Or if you want to run just the frontend
+$ cd frontend
+
+# Install the dependencies
+$ npm install
+
+# Run the application in development mode
+$ npm run dev
+
+# The server will start on port:5173 - access <http://127.0.0.1:5173/>
+```
