@@ -26,8 +26,13 @@ export default function Home() {
     ],
   } as Filter;
 
-  const sortByDate = () => {
-    return dateFilter ? 1 : -1;
+  const sortByDate = (a: ITransaction, b: ITransaction) => {
+    if (a.createdAt && b.createdAt) {
+      const dateA = new Date(a.createdAt).getTime();
+      const dateB = new Date(b.createdAt).getTime();
+      return !dateFilter ? (dateA < dateB ? 1 : -1) : dateA > dateB ? 1 : -1;
+    }
+    return dateFilter ? -1 : 1;
   };
 
   return (
