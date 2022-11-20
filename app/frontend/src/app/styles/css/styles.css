@@ -51,7 +51,8 @@ body .header tr {
   }
 }
 body .header-logo {
-  color: DarkSlateGray;
+  color: Teal;
+  text-shadow: 0 0 10px Teal;
   margin-top: 5rem;
   margin-left: 1rem;
   font-size: 3rem;
@@ -135,14 +136,10 @@ body .userInfo .balance {
   justify-content: space-around;
 }
 body .userInfo .balance button {
+  text-align: center;
+  margin: 0 1rem;
   all: unset;
   cursor: pointer;
-  transition-duration: 0.4s;
-  margin: 0 1rem;
-}
-body .userInfo .balance button:hover {
-  color: #FFF;
-  background-color: Teal;
 }
 body .userInfo .balance span {
   font-size: 1.5rem;
