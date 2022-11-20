@@ -1,21 +1,20 @@
-import { Dispatch, SetStateAction, MouseEvent } from 'react';
+import { MouseEvent } from 'react';
+import { useAppDispatch } from '../../store/hooks/useAppDispatch';
+import { setFilterType } from '../../store/userActions/actionsSlice';
 
-type DataProps = {
-  setFilterType: Dispatch<SetStateAction<string>>;
-};
+export default function TransactionsFilter() {
+  const dispatch = useAppDispatch();
 
-type EventTargetElement = {
-  target: MouseEvent<HTMLButtonElement, MouseEvent>;
-};
-
-export default function TransactionsFilter({ setFilterType }: DataProps) {
   const handleToggle = (event: MouseEvent) => {
     const target = event.target as HTMLButtonElement;
-    setFilterType(target.name);
+    dispatch(setFilterType(target.name));
   };
 
   return (
     <div className="filter-actions">
+      <button name="all" type="button" onClick={handleToggle}>
+        All
+      </button>
       <button name="debts" type="button" onClick={handleToggle}>
         Debts
       </button>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import TransactionCard from './TransactionCard';
@@ -14,9 +14,8 @@ type Filter = {
 
 export default function Home() {
   const { transactions } = useAppSelector((store) => store.user);
-  const [filterType, setFilterType] = useState('all');
+  const { filterType } = useAppSelector((store) => store.userActions);
   const [dateFilter, setDateFilter] = useState(false);
-  console.log('🚀 ~ Home ~ dateFilter', dateFilter);
 
   const filteredTransactions = {
     debts: [...transactions.debitTransactions],
@@ -36,7 +35,7 @@ export default function Home() {
       <Header />
       <Balance />
       <InputForTransactions />
-      <TransactionsFilter setFilterType={setFilterType} />
+      <TransactionsFilter />
       <table className="transactions-table">
         <thead>
           <tr>

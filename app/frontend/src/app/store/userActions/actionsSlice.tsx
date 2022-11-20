@@ -5,10 +5,13 @@ export const actionsSlice = createSlice({
   name: 'userActions',
   initialState,
   reducers: {
+    setFilterType: (state, { payload }) => {
+      state.filterType = payload;
+    },
     setHideInputForm: (state) => {
       state.hideInputForm = !state.hideInputForm;
     },
   },
 });
 
-export const { setHideInputForm } = actionsSlice.actions;
+export const { setHideInputForm, setFilterType } = actionsSlice.actions;
