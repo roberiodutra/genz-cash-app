@@ -23,6 +23,7 @@ export default function Register() {
     if (user) {
       const { username, token } = user;
       dispatch(setToken({ username, token }));
+      dispatch(setFormError(''));
       navigate('/');
     }
   }, [user]);

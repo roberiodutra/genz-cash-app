@@ -24,7 +24,7 @@ export default function UserInfo() {
               <h2>
                 {hideBalance
                   ? '*'.repeat(String(balance).length)
-                  : `$${balance}`}
+                  : `$${balance.toFixed(2)}`}
               </h2>
               <button
                 type="button"
