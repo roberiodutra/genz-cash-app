@@ -15,6 +15,7 @@ export default function InputForTransactions() {
   const [createTransaction] = transactionApi.useCreateTransactionMutation();
   const [updateAccount] = accountApi.useUpdateAccountMutation();
   const [getUserByIdOrName] = userApi.useGetUserByIdOrNameMutation();
+  const { hideInputForm } = useAppSelector((store) => store.userActions);
   const [errUserNotFound, setErrUserNotFound] = useState('');
   const [isYourself, setIsYourself] = useState('');
   const user = getUserFromLocalStorage();
@@ -59,7 +60,7 @@ export default function InputForTransactions() {
   };
 
   return (
-    <section className="form">
+    <section className={hideInputForm ? 'form' : ''}>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <fieldset>
           <legend>

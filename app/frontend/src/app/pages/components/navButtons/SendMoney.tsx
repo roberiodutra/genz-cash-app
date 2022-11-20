@@ -1,11 +1,19 @@
-import { useNavigate, useLocation } from 'react-router-dom';
-import { getUserFromLocalStorage } from '../../../utils/localStorage';
+import { useLocation } from 'react-router-dom';
+import { setHideInputForm } from '../../../store/userActions/actionsSlice';
+import { useAppDispatch } from '../../../store/hooks/useAppDispatch';
 
 export default function SendMoney() {
-  const user = getUserFromLocalStorage();
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const path = location.pathname;
 
-  return <div>{path === '/' ? <button>Send Money</button> : null}</div>;
+  return (
+    <div>
+      {path === '/' ? (
+        <button type="button" onClick={() => dispatch(setHideInputForm())}>
+          Send Money
+        </button>
+      ) : null}
+    </div>
+  );
 }
