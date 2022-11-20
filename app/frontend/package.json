@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "lint": "eslint \"src/**/*.{tsx,js,jsx}\" --quiet",
     "format": "prettier --write \"src/**/**/*.{tsx,js,jsx}\"",
-    "sass": "sass --watch src/styles/sass/styles.sass:src/styles/css/styles.css",
+    "sass": "sass --watch src/app/styles/sass/styles.sass:src/app/styles/css/styles.css",
     "test": "jest --watchAll -i --forceExit --verbose --config=./jest.config.ts",
     "test:coverage": "react-scripts test --coverage --watchAll=false"
   },

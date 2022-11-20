@@ -10,7 +10,11 @@ export default function SendMoney() {
   return (
     <div>
       {path === '/' ? (
-        <button type="button" onClick={() => dispatch(setHideInputForm())}>
+        <button
+          className="navbar-buttons"
+          type="button"
+          onClick={() => dispatch(setHideInputForm())}
+        >
           Send Money
         </button>
       ) : null}

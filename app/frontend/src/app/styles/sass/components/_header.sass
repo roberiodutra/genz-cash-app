@@ -4,7 +4,8 @@
 @mixin section
   .header
     display: flex
-    justify-content: space-between
+    flex-direction: column
+    align-items: center
     @include mixin.container
     @include mixin.phone-only
       display: block
@@ -13,35 +14,19 @@
 
     &-logo
       color: variables.$night-blueHex
+      margin-top: 5rem
       margin-left: 1rem
-      font-size: 2.2rem
-      @include mixin.phone-only
+      font-size: 3rem
 
     &-navbar
-      height: 100%
-      margin: 0 1rem
-      font-size: 1.1rem
+      font-size: 1rem
+      padding-top: 1.5rem
       @include mixin.flex-center
-      @include mixin.phone-only
-        padding-top: 1.5rem
-
-    button
-      @include mixin.button
 
     .navbar-buttons
-      padding: 0 1rem
-      @include mixin.phone-only
-
-    &-social-media
-      ul
-        height: 100%
-        @include mixin.flex-center
-        @include mixin.phone-only
-          display: none
-
-        li
-          margin: 0 1rem
-
-          a
-            &:hover
-              color: variables.$primary-color
+      @include mixin.button
+      padding: 0.5rem 1.2rem
+      border-radius: 5%
+      border: 0.1rem solid variables.$seashell3
+      margin-left: 1rem
+      background-color: variables.$night-blueHex
