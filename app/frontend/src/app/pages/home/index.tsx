@@ -7,6 +7,7 @@ import UserInfo from '../components/UserInfo';
 import { useAppSelector } from '../../store/hooks/useAppSelector';
 import TransactionsFilter from '../components/TransactionsFilter';
 import { ITransaction } from '../../store/transaction/interfaces/ITransactions';
+import EmptyTransactions from '../components/EmptyTransactions';
 
 type FilterType = {
   [key: string]: ITransaction[];
@@ -56,11 +57,15 @@ export default function Home() {
             </th>
           </tr>
         </thead>
-        {filteredTransactions[filterType]
-          .sort(sortByDate)
-          .map((trans, index) => (
-            <TransactionCard key={index} trans={trans} />
-          ))}
+        {filteredTransactions[filterType].length === 0 ? (
+          <EmptyTransactions />
+        ) : (
+          filteredTransactions[filterType]
+            .sort(sortByDate)
+            .map((trans, index) => (
+              <TransactionCard key={index} trans={trans} />
+            ))
+        )}
       </table>
       <Footer />
     </main>
