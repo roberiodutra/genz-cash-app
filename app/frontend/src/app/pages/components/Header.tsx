@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header className="header">
       <a href="/" className="header-logo">
-        Genz Cash
+        GenZ Cash
       </a>
       <div className="header-navbar">
         <SendMoney />

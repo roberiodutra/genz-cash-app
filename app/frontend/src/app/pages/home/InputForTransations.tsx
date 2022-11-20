@@ -8,7 +8,11 @@ import { userApi } from '../../store/user/apiService';
 import { accountApi } from '../../store/account/apiService';
 import { useAppSelector } from '../../store/hooks/useAppSelector';
 import { useAppDispatch } from '../../store/hooks/useAppDispatch';
-import { setFormError, setRefresh } from '../../store/userActions/actionsSlice';
+import {
+  setFormError,
+  setHideInputForm,
+  setRefresh,
+} from '../../store/userActions/actionsSlice';
 
 export default function InputForTransactions() {
   const [createTransaction] = transactionApi.useCreateTransactionMutation();
@@ -71,6 +75,13 @@ export default function InputForTransactions() {
         }
         onSubmit={handleSubmit(onSubmitHandler)}
       >
+        <button
+          className="button-close-form"
+          type="button"
+          onClick={() => dispatch(setHideInputForm())}
+        >
+          X
+        </button>
         <fieldset>
           <legend>
             <b>Send Money</b>
