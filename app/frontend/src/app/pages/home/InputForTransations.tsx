@@ -59,8 +59,18 @@ export default function InputForTransactions() {
   };
 
   return (
-    <section className={hideInputForm ? 'form' : ''}>
-      <form onSubmit={handleSubmit(onSubmitHandler)}>
+    <section>
+      <div
+        className={
+          hideInputForm ? 'transaction-input-full' : 'hide-transaction-input'
+        }
+      ></div>
+      <form
+        className={
+          hideInputForm ? 'form transaction-input' : 'hide-transaction-input'
+        }
+        onSubmit={handleSubmit(onSubmitHandler)}
+      >
         <fieldset>
           <legend>
             <b>Send Money</b>
