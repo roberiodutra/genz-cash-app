@@ -71,7 +71,9 @@ export default function InputForTransactions() {
       ></div>
       <form
         className={
-          hideInputForm ? 'form transaction-input' : 'hide-transaction-input'
+          hideInputForm
+            ? 'form animate transaction-input'
+            : 'hide-transaction-input'
         }
         onSubmit={handleSubmit(onSubmitHandler)}
       >
