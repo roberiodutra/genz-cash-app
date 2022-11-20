@@ -60,6 +60,70 @@
   .hide-transaction-input
     display: none
 
+  .filter-actions
+    box-shadow: 0 0 1rem variables.$night-blue
+    @include mixin.container
+    @include mixin.phone-only
+    text-align: center
+    input[type="radio"]
+      display: none
+      &:checked
+        + .box
+          background-color: green
+          span
+            color: white
+            transform: translateY(10px)
+            &:before
+              transform: translateY(0px)
+              opacity: 1
+
+    .box
+      width: 100px
+      height: 50px
+      background-color: white
+      transition: all 250ms ease
+      will-change: transition
+      display: inline-block
+      text-align: center
+      cursor: pointer
+      position: relative
+      &:active
+        transform: translateY(10px)
+
+      span
+        position: absolute
+        transform: translate(0, 10px)
+        left: 0
+        right: 0
+        transition: all 300ms ease
+        font-size: 1em
+        user-select: none
+        color: green
+        &:before
+          font-size: 0.8em
+          font-family: FontAwesome
+          display: block
+          transform: translateY(-30px)
+          opacity: 0
+          transition: all 300ms ease-in-out
+          font-weight: normal
+          color: white
+
+    .all
+      span
+        &:before
+          content: "\f14a"
+    .debts
+      span
+        &:before
+          content: "\f14a"
+    .credits
+      span
+        &:before
+          content: "\f14a"
+  span
+    padding-right: 10px
+
   .transactions-table
     border-collapse: collapse
     font-size: 1.4em

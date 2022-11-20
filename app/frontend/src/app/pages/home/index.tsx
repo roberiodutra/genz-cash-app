@@ -51,7 +51,7 @@ export default function Home() {
                 type="button"
                 onClick={() => setDateFilter((prev) => !prev)}
               >
-                Date
+                Date 🔃
               </button>
             </th>
           </tr>

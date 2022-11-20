@@ -166,6 +166,93 @@ body .transaction-input .button-close-form {
 body .hide-transaction-input {
   display: none;
 }
+body .filter-actions {
+  box-shadow: 0 0 1rem rgba(4, 41, 58, 0.6);
+  max-width: 720px;
+  padding: 1.5rem 0;
+  margin: 0 auto;
+  text-align: center;
+}
+@media (max-width: 479px) {
+  body .filter-actions {
+    padding: 0.5rem;
+  }
+  body .filter-actions thead,
+body .filter-actions tbody,
+body .filter-actions th,
+body .filter-actions td,
+body .filter-actions tr {
+    display: block;
+  }
+  body .filter-actions thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  body .filter-actions td:nth-last-child(1), body .filter-actions td:nth-last-child(2) {
+    display: none;
+  }
+}
+body .filter-actions input[type=radio] {
+  display: none;
+}
+body .filter-actions input[type=radio]:checked + .box {
+  background-color: green;
+}
+body .filter-actions input[type=radio]:checked + .box span {
+  color: white;
+  transform: translateY(10px);
+}
+body .filter-actions input[type=radio]:checked + .box span:before {
+  transform: translateY(0px);
+  opacity: 1;
+}
+body .filter-actions .box {
+  width: 100px;
+  height: 50px;
+  background-color: white;
+  transition: all 250ms ease;
+  will-change: transition;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+body .filter-actions .box:active {
+  transform: translateY(10px);
+}
+body .filter-actions .box span {
+  position: absolute;
+  transform: translate(0, 10px);
+  left: 0;
+  right: 0;
+  transition: all 300ms ease;
+  font-size: 1em;
+  user-select: none;
+  color: green;
+}
+body .filter-actions .box span:before {
+  font-size: 0.8em;
+  font-family: FontAwesome;
+  display: block;
+  transform: translateY(-30px);
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+  font-weight: normal;
+  color: white;
+}
+body .filter-actions .all span:before {
+  content: "\f14a";
+}
+body .filter-actions .debts span:before {
+  content: "\f14a";
+}
+body .filter-actions .credits span:before {
+  content: "\f14a";
+}
+body span {
+  padding-right: 10px;
+}
 body .transactions-table {
   border-collapse: collapse;
   font-size: 1.4em;
