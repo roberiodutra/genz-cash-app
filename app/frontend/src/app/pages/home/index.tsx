@@ -5,28 +5,58 @@ import TransactionCard from './TransactionCard';
 import InputForTransactions from './InputForTransations';
 import Balance from '../components/Balance';
 import { useAppSelector } from '../../store/hooks/useAppSelector';
+import TransactionsFilter from '../components/TransactionsFilter';
+import { ITransaction } from '../../store/transaction/interfaces/ITransactions';
+
+type Filter = {
+  [key: string]: ITransaction[];
+};
 
 export default function Home() {
   const { transactions } = useAppSelector((store) => store.user);
+  const [filterType, setFilterType] = useState('all');
+  const [dateFilter, setDateFilter] = useState(false);
+  console.log('🚀 ~ Home ~ dateFilter', dateFilter);
+
+  const filteredTransactions = {
+    debts: [...transactions.debitTransactions],
+    credits: [...transactions.creditTransactions],
+    all: [
+      ...transactions.creditTransactions,
+      ...transactions.debitTransactions,
+    ],
+  } as Filter;
+
+  const sortByDate = () => {
+    return dateFilter ? 1 : -1;
+  };
+
   return (
     <main>
       <Header />
       <Balance />
       <InputForTransactions />
+      <TransactionsFilter setFilterType={setFilterType} />
       <table className="transactions-table">
         <thead>
           <tr>
             <th>Detail</th>
             <th>Value</th>
-            <th>Date</th>
+            <th>
+              <button
+                type="button"
+                onClick={() => setDateFilter((prev) => !prev)}
+              >
+                Date
+              </button>
+            </th>
           </tr>
         </thead>
-        {[
-          ...transactions.creditTransactions,
-          ...transactions.debitTransactions,
-        ].map((trans, index) => (
-          <TransactionCard key={index} trans={trans} />
-        ))}
+        {filteredTransactions[filterType]
+          .sort(sortByDate)
+          .map((trans, index) => (
+            <TransactionCard key={index} trans={trans} />
+          ))}
       </table>
       <Footer />
     </main>

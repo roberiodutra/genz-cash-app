@@ -4,7 +4,6 @@ import { getUserFromLocalStorage } from '../../utils/localStorage';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ITransaction } from '../../store/transaction/interfaces/ITransactions';
 import { accountApi } from '../../store/account/apiService';
-import { IAccount } from '../../store/account/interfaces/IAccount';
 
 type ITrans = {
   trans: ITransaction;
@@ -32,10 +31,6 @@ export default function TransactionCard({ trans }: ITrans) {
       })();
     }
   }, [trans]);
-
-  const handleToggle = () => {
-    setNavbarOpen((prev) => !prev);
-  };
 
   return (
     <tbody>
