@@ -5,6 +5,9 @@ export const actionsSlice = createSlice({
   name: 'userActions',
   initialState,
   reducers: {
+    setFormError: (state, { payload }) => {
+      state.isFormError = payload;
+    },
     setFilterType: (state, { payload }) => {
       state.filterType = payload;
     },
@@ -17,5 +20,5 @@ export const actionsSlice = createSlice({
   },
 });
 
-export const { setHideInputForm, setFilterType, setRefresh } =
+export const { setFormError, setHideInputForm, setFilterType, setRefresh } =
   actionsSlice.actions;

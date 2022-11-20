@@ -8,7 +8,7 @@ import { useAppSelector } from '../../store/hooks/useAppSelector';
 import TransactionsFilter from '../components/TransactionsFilter';
 import { ITransaction } from '../../store/transaction/interfaces/ITransactions';
 
-type Filter = {
+type FilterType = {
   [key: string]: ITransaction[];
 };
 
@@ -24,7 +24,7 @@ export default function Home() {
       ...transactions.creditTransactions,
       ...transactions.debitTransactions,
     ],
-  } as Filter;
+  } as FilterType;
 
   const sortByDate = (a: ITransaction, b: ITransaction) => {
     if (a.createdAt && b.createdAt) {
@@ -32,7 +32,7 @@ export default function Home() {
       const dateB = new Date(b.createdAt).getTime();
       return !dateFilter ? (dateA < dateB ? 1 : -1) : dateA > dateB ? 1 : -1;
     }
-    return dateFilter ? -1 : 1;
+    return 1;
   };
 
   return (

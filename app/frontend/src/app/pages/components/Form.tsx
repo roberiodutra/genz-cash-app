@@ -3,14 +3,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { UserType } from '../../types/UserType';
 import { userSchema } from '../../schemas/userSchema';
 import { useLocation } from 'react-router-dom';
+import { useAppSelector } from '../../store/hooks/useAppSelector';
 
 export default function Form({
-  apiError,
   onSubmitHandler,
 }: {
-  apiError: string;
   onSubmitHandler: SubmitHandler<UserType>;
 }) {
+  const { isFormError } = useAppSelector((store) => store.userActions);
   const location = useLocation();
   const path = location.pathname === '/sign_in';
   const {
@@ -40,7 +40,7 @@ export default function Form({
             <label htmlFor="username" className="form-label">
               Username
             </label>
-            <div>{apiError || errors.username?.message}</div>
+            <div>{isFormError || errors.username?.message}</div>
           </div>
 
           <div className="form-box">

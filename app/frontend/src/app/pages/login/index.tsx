@@ -5,14 +5,16 @@ import Footer from '../components/Footer';
 import { userApi } from '../../store/user/apiService';
 import Form from '../components/Form';
 import { UserType } from '../../types/UserType';
+import { useAppDispatch } from '../../store/hooks/useAppDispatch';
+import { setFormError } from '../../store/userActions/actionsSlice';
 
 export default function Login() {
-  const [errLogin, setErrLogin] = useState('');
   const [loginUser, { error }] = userApi.useLoginUserMutation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (error && 'data' in error) setErrLogin(error.data.message);
+    if (error && 'data' in error) dispatch(setFormError(error.data.message));
   }, [error]);
 
   const onSubmitHandler = async (userInfo: UserType) => {
@@ -24,7 +26,7 @@ export default function Login() {
     <main>
       <Header />
       <section className="form">
-        <Form apiError={errLogin} onSubmitHandler={onSubmitHandler} />
+        <Form onSubmitHandler={onSubmitHandler} />
 
         <p>Don't have an account?</p>
 

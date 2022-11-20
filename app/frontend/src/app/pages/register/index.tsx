@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { userApi } from '../../store/user/apiService';
 import { accountApi } from '../../store/account/apiService';
 import { UserType } from '../../types/UserType';
@@ -9,11 +9,11 @@ import Footer from '../components/Footer';
 import { useAppDispatch } from '../../store/hooks/useAppDispatch';
 import { setToken } from '../../store/user/userSlice';
 import { getUserFromLocalStorage } from '../../utils/localStorage';
+import { setFormError } from '../../store/userActions/actionsSlice';
 
 export default function Register() {
-  const [errorRegister, setErrorRegister] = useState('');
   const navigate = useNavigate();
-  const [createUser, { error }] = userApi.useCreateUserMutation();
+  const [createUser] = userApi.useCreateUserMutation();
   const [updateUser] = userApi.useUpdateUserMutation();
   const [createAccount] = accountApi.useCreateAccountMutation();
   const user = getUserFromLocalStorage();
@@ -25,27 +25,33 @@ export default function Register() {
       dispatch(setToken({ username, token }));
       navigate('/');
     }
-    if (error && 'data' in error) setErrorRegister(error.data.message);
   }, [user]);
 
   const onSubmitHandler = async (userInfo: UserType) => {
-    const newUser = await createUser(userInfo).unwrap();
-    if (newUser.id) {
-      const account = await createAccount().unwrap();
-      if (account.id) {
-        await updateUser({
-          id: newUser.id,
-          accountId: account.id,
-        });
-      }
-    }
+    await createUser(userInfo)
+      .unwrap()
+      .then(async (data) => {
+        if (data.id) {
+          const account = await createAccount().unwrap();
+          if (account.id) {
+            await updateUser({
+              id: data.id,
+              accountId: account.id,
+            });
+          }
+        }
+      })
+      .catch((error) => {
+        if (error && 'data' in error)
+          dispatch(setFormError(error.data.message));
+      });
   };
 
   return (
     <main>
       <Header />
       <section className="form">
-        <Form apiError={errorRegister} onSubmitHandler={onSubmitHandler} />
+        <Form onSubmitHandler={onSubmitHandler} />
 
         <p>Have an account?</p>
 

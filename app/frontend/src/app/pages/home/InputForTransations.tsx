@@ -5,19 +5,18 @@ import { TransactionType } from '../../types/TransactionType';
 import { transactionApi } from '../../store/transaction/apiService';
 import { getUserFromLocalStorage } from '../../utils/localStorage';
 import { userApi } from '../../store/user/apiService';
-import { useState } from 'react';
 import { accountApi } from '../../store/account/apiService';
 import { useAppSelector } from '../../store/hooks/useAppSelector';
 import { useAppDispatch } from '../../store/hooks/useAppDispatch';
-import { setRefresh } from '../../store/userActions/actionsSlice';
+import { setFormError, setRefresh } from '../../store/userActions/actionsSlice';
 
 export default function InputForTransactions() {
   const [createTransaction] = transactionApi.useCreateTransactionMutation();
   const [updateAccount] = accountApi.useUpdateAccountMutation();
   const [getUserByIdOrName] = userApi.useGetUserByIdOrNameMutation();
-  const { hideInputForm } = useAppSelector((store) => store.userActions);
-  const [errUserNotFound, setErrUserNotFound] = useState('');
-  const [isYourself, setIsYourself] = useState('');
+  const { hideInputForm, isFormError } = useAppSelector(
+    (store) => store.userActions
+  );
   const user = getUserFromLocalStorage();
   const { balance } = useAppSelector((store) => store.user);
   const dispatch = useAppDispatch();
@@ -32,11 +31,11 @@ export default function InputForTransactions() {
 
   const onSubmitHandler = async (data: TransactionType) => {
     if (data.receiver === user.username) {
-      return setIsYourself('Cannot send to yourself');
+      return dispatch(setFormError('Cannot send to yourself'));
     }
 
     const receiver = await getUserByIdOrName(data.receiver).unwrap();
-    if (!receiver) setErrUserNotFound('User Not Found');
+    if (!receiver) dispatch(setFormError('User Not Found'));
 
     if (receiver?.id) {
       await createTransaction({
@@ -55,8 +54,8 @@ export default function InputForTransactions() {
         balance: Number(balance) - Number(data.value),
       });
       dispatch(setRefresh());
+      reset();
     }
-    reset();
   };
 
   return (
@@ -77,9 +76,7 @@ export default function InputForTransactions() {
             <label htmlFor="receiver" className="form-label">
               Receiver
             </label>
-            <div>
-              {isYourself || errUserNotFound || errors.receiver?.message}
-            </div>
+            <div>{isFormError || errors.receiver?.message}</div>
           </div>
           <div className="form-box">
             <input
