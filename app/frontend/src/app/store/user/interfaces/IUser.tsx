@@ -22,7 +22,3 @@ export interface IUserDataWithTransactions extends IUserFullData {
   balance: number;
   transactions: ITransactions;
 }
-
-export interface IInitialState extends IUserDataWithTransactions {
-  refresh: boolean;
-}

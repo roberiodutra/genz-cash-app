@@ -18,16 +18,8 @@ export const userSlice = createSlice({
     setTransactions: (state, { payload }) => {
       state.transactions = payload;
     },
-    setRefresh: (state) => {
-      state.refresh = !state.refresh;
-    },
   },
 });
 
-export const {
-  setToken,
-  setAccountId,
-  setAccountBalance,
-  setTransactions,
-  setRefresh,
-} = userSlice.actions;
+export const { setToken, setAccountId, setAccountBalance, setTransactions } =
+  userSlice.actions;

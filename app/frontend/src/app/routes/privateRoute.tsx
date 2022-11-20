@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAppDispatch } from '../store/hooks/useAppDispatch';
 import { userApi } from '../store/user/apiService';
@@ -16,7 +16,7 @@ import {
 } from '../utils/localStorage';
 
 export const PrivateRoute = () => {
-  const { refresh } = useAppSelector((store) => store.user);
+  const { refresh } = useAppSelector((store) => store.userActions);
   const [getUserByIdOrName] = userApi.useGetUserByIdOrNameMutation();
   const [getAccountById] = accountApi.useGetAccountByIdMutation();
   const user = getUserFromLocalStorage();

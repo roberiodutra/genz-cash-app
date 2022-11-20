@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { accountApi } from '../../store/account/apiService';
 import { useAppSelector } from '../../store/hooks/useAppSelector';
 import { useAppDispatch } from '../../store/hooks/useAppDispatch';
-import { setRefresh } from '../../store/user/userSlice';
+import { setRefresh } from '../../store/userActions/actionsSlice';
 
 export default function InputForTransactions() {
   const [createTransaction] = transactionApi.useCreateTransactionMutation();

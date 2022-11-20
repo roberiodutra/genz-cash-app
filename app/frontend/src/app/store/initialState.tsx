@@ -1,6 +1,6 @@
-import { IInitialState } from './user/interfaces/IUser';
+import { IUserDataWithTransactions } from './user/interfaces/IUser';
 
-export const initialState: IInitialState = {
+export const initialState: IUserDataWithTransactions = {
   username: '',
   accountId: 0,
   balance: 0,
@@ -9,5 +9,4 @@ export const initialState: IInitialState = {
     creditTransactions: [],
   },
   token: '',
-  refresh: false,
 };

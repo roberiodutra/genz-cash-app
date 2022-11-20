@@ -11,7 +11,11 @@ export const actionsSlice = createSlice({
     setHideInputForm: (state) => {
       state.hideInputForm = !state.hideInputForm;
     },
+    setRefresh: (state) => {
+      state.refresh = !state.refresh;
+    },
   },
 });
 
-export const { setHideInputForm, setFilterType } = actionsSlice.actions;
+export const { setHideInputForm, setFilterType, setRefresh } =
+  actionsSlice.actions;
