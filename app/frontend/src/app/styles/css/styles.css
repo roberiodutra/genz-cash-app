@@ -376,8 +376,8 @@ body .form fieldset {
 }
 body .form legend {
   padding: 0.7rem;
-  background-image: linear-gradient(to right, rgb(1, 11, 22), rgb(4, 1, 8));
-  color: #1C1C1C;
+  background-image: linear-gradient(to right, rgb(15, 29, 46), rgb(4, 12, 5));
+  color: #FFF;
   text-align: center;
   border-radius: 0.5rem;
   margin-bottom: 20px;
@@ -399,7 +399,7 @@ body .form-input {
 body .form-input:focus ~ .form-label, body .form-input:valid ~ .form-label, body .form-input:-internal-autofill-selected ~ .form-label {
   top: -1.2rem;
   font-size: 0.7rem;
-  color: #1f6bb6;
+  color: #FFF;
 }
 body .form-label {
   position: absolute;
@@ -412,15 +412,15 @@ body .form-label {
 }
 body .form button {
   width: 100%;
-  background-image: linear-gradient(to right, rgb(1, 11, 22), rgb(4, 1, 8));
+  background-image: linear-gradient(to right, rgb(15, 29, 46), rgb(4, 12, 5));
   padding: 0.7rem;
-  color: #1C1C1C;
+  color: #FFF;
   font-size: 1.2rem;
   cursor: pointer;
   border-radius: 0.6rem;
 }
 body .form button:hover {
-  background-image: linear-gradient(to right, rgb(15, 29, 46), rgb(4, 12, 5));
+  background-image: linear-gradient(to right, rgb(22, 6, 80), rgb(2, 1, 14));
 }
 body .form p {
   text-align: center;
