@@ -46,9 +46,7 @@
 @mixin button
   all: unset
   cursor: pointer
+  transition-duration: 0.4s
   &:hover
-    color: variables.$secondary-color
-
-@mixin hover
-  background-color: variables.$hover-blue
-  color: variables.$primary-color
+    color: variables.$primary-color
+    background-color: variables.$night-blue

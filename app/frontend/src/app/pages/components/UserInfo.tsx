@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useAppSelector } from '../../store/hooks/useAppSelector';
 
 export default function UserInfo() {
   const { balance, username } = useAppSelector((store) => store.user);
+  const [hideBalance, setHideBalance] = useState(false);
   return (
     <table className="userInfo">
       <thead>
@@ -19,8 +21,21 @@ export default function UserInfo() {
           </td>
           <td>
             <div className="balance">
-              <h2>{balance}</h2>
-              <button type="button">show</button>
+              <h2>
+                {hideBalance
+                  ? '*'.repeat(String(balance).length)
+                  : `$${balance}`}
+              </h2>
+              <button
+                type="button"
+                onClick={() => setHideBalance((prev) => !prev)}
+              >
+                <span>
+                  <i
+                    className={hideBalance ? 'fa fa-eye-slash' : 'fa fa-eye'}
+                  ></i>
+                </span>
+              </button>
             </div>
           </td>
         </tr>

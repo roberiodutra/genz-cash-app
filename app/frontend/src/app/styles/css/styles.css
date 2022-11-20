@@ -8,11 +8,11 @@
 }
 
 body {
-  background-color: #000;
-  color: #777;
+  background-color: #FFFAFA;
+  color: #1C1C1C;
 }
 body a {
-  color: #777;
+  color: #1C1C1C;
   text-decoration: none;
   transition: 0.4s;
 }
@@ -23,7 +23,7 @@ body .header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 720px;
+  max-width: 900px;
   padding: 1.5rem 0;
   margin: 0 auto;
 }
@@ -51,7 +51,7 @@ body .header tr {
   }
 }
 body .header-logo {
-  color: #04293A;
+  color: DarkSlateGray;
   margin-top: 5rem;
   margin-left: 1rem;
   font-size: 3rem;
@@ -66,20 +66,24 @@ body .header-navbar {
 body .header .navbar-buttons {
   all: unset;
   cursor: pointer;
+  transition-duration: 0.4s;
   padding: 0.5rem 1.2rem;
   border-radius: 5%;
-  border: 0.1rem solid #CDC5BF;
+  box-shadow: 0 0 0.5rem Teal;
   margin-left: 1rem;
-  background-color: #04293A;
+  background-color: #FFF;
+  color: #1C1C1C;
 }
 body .header .navbar-buttons:hover {
-  color: #1f6bb6;
+  color: #FFF;
+  background-color: Teal;
 }
 body .userInfo {
-  max-width: 720px;
+  max-width: 900px;
   padding: 1.5rem 0;
   margin: 0 auto;
-  box-shadow: 0 0 1rem rgba(4, 41, 58, 0.6);
+  margin-top: 1rem;
+  box-shadow: 0 0 0.5rem Teal;
   width: 100%;
 }
 @media (max-width: 479px) {
@@ -103,39 +107,45 @@ body .userInfo tr {
   }
 }
 body .userInfo thead tr {
-  font-size: 0.8rem;
-  color: #CDC5BF;
+  font-size: 0.9rem;
+  color: #1C1C1C;
 }
 body .userInfo th, body .userInfo td {
   padding: 0.2rem 1rem;
 }
 body .userInfo .username {
   padding: 0.4rem 1rem;
-  box-shadow: 0 0 1rem rgba(4, 41, 58, 0.6);
+  box-shadow: 0 0 0.5rem Teal;
 }
 body .userInfo .username button {
   all: unset;
   cursor: pointer;
+  transition-duration: 0.4s;
 }
 body .userInfo .username button:hover {
-  color: #1f6bb6;
+  color: #FFF;
+  background-color: Teal;
 }
 body .userInfo .balance {
   padding: 0.4rem 1rem;
-  box-shadow: 0 0 1rem rgba(4, 41, 58, 0.6);
+  box-shadow: 0 0 0.5rem Teal;
   display: flex;
   align-items: center;
   justify-content: center;
   justify-content: space-around;
-  background-color: black;
 }
 body .userInfo .balance button {
   all: unset;
   cursor: pointer;
+  transition-duration: 0.4s;
   margin: 0 1rem;
 }
 body .userInfo .balance button:hover {
-  color: #1f6bb6;
+  color: #FFF;
+  background-color: Teal;
+}
+body .userInfo .balance span {
+  font-size: 1.5rem;
 }
 body .transaction-input-full {
   position: fixed;
@@ -167,8 +177,8 @@ body .hide-transaction-input {
   display: none;
 }
 body .filter-actions {
-  box-shadow: 0 0 1rem rgba(4, 41, 58, 0.6);
-  max-width: 720px;
+  box-shadow: 0 0 0.5rem Teal;
+  max-width: 900px;
   padding: 1.5rem 0;
   margin: 0 auto;
   text-align: center;
@@ -197,7 +207,7 @@ body .filter-actions input[type=radio] {
   display: none;
 }
 body .filter-actions input[type=radio]:checked + .box {
-  background-color: green;
+  background-color: Teal;
 }
 body .filter-actions input[type=radio]:checked + .box span {
   color: white;
@@ -210,7 +220,7 @@ body .filter-actions input[type=radio]:checked + .box span:before {
 body .filter-actions .box {
   width: 100px;
   height: 50px;
-  background-color: white;
+  background-color: rgba(4, 41, 58, 0.6);
   transition: all 250ms ease;
   will-change: transition;
   display: inline-block;
@@ -229,7 +239,7 @@ body .filter-actions .box span {
   transition: all 300ms ease;
   font-size: 1em;
   user-select: none;
-  color: green;
+  color: #1C1C1C;
 }
 body .filter-actions .box span:before {
   font-size: 0.8em;
@@ -256,9 +266,9 @@ body span {
 body .transactions-table {
   border-collapse: collapse;
   font-size: 1.4em;
-  box-shadow: 0 0 1rem rgba(4, 41, 58, 0.6);
+  box-shadow: 0 0 0.5rem Teal;
   width: 100%;
-  max-width: 720px;
+  max-width: 900px;
   padding: 1.5rem 0;
   margin: 0 auto;
 }
@@ -284,32 +294,34 @@ body .transactions-table tr {
   }
 }
 body .transactions-table thead tr {
-  background-color: rgba(4, 41, 58, 0.6);
-  color: #CDC5BF;
+  background-color: Teal;
+  color: #FFF;
   text-align: left;
 }
 body .transactions-table th, body .transactions-table td {
   padding: 1.5rem 2.5rem;
 }
 body .transactions-table tbody tr {
-  border-bottom: 0.06rem solid #CDC5BF;
+  border-bottom: 0.06rem solid #1C1C1C;
 }
 body .transactions-table tbody tr:nth-of-type(even) {
-  background-color: #CDC5BF;
+  background-color: #1C1C1C;
 }
 body .transactions-table tbody tr:last-of-type {
-  border-bottom: 0.12rem solid rgba(4, 41, 58, 0.6);
+  border-bottom: 0.12rem solid Teal;
 }
 body .transactions-table button {
   all: unset;
   cursor: pointer;
+  transition-duration: 0.4s;
 }
 body .transactions-table button:hover {
-  color: #1f6bb6;
+  color: #FFF;
+  background-color: Teal;
 }
 body .form {
   margin: 0 auto;
-  background-color: rgba(4, 41, 58, 0.6);
+  background-color: Teal;
   padding: 0.9rem;
   border-radius: 0.9rem;
   width: 20%;
@@ -365,7 +377,7 @@ body .form fieldset {
 body .form legend {
   padding: 0.7rem;
   background-image: linear-gradient(to right, rgb(1, 11, 22), rgb(4, 1, 8));
-  color: #CDC5BF;
+  color: #1C1C1C;
   text-align: center;
   border-radius: 0.5rem;
   margin-bottom: 20px;
@@ -379,7 +391,7 @@ body .form-input {
   background: none;
   border: none;
   outline: none;
-  border-bottom: 0.06rem solid #CDC5BF;
+  border-bottom: 0.06rem solid #1C1C1C;
   color: white;
   font-size: 1.3rem;
   letter-spacing: 0.12rem;
@@ -391,7 +403,7 @@ body .form-input:focus ~ .form-label, body .form-input:valid ~ .form-label, body
 }
 body .form-label {
   position: absolute;
-  color: #CDC5BF;
+  color: #1C1C1C;
   padding: 1.2rem;
   top: 0;
   left: 0;
@@ -402,7 +414,7 @@ body .form button {
   width: 100%;
   background-image: linear-gradient(to right, rgb(1, 11, 22), rgb(4, 1, 8));
   padding: 0.7rem;
-  color: #CDC5BF;
+  color: #1C1C1C;
   font-size: 1.2rem;
   cursor: pointer;
   border-radius: 0.6rem;
@@ -413,34 +425,11 @@ body .form button:hover {
 body .form p {
   text-align: center;
   padding: 1.5rem;
-  color: #CDC5BF;
+  color: #1C1C1C;
 }
 body .form .error-message {
   padding-top: 0.6rem;
-  color: #CDC5BF;
-}
-body .navbar {
-  position: absolute;
-  margin-top: -25px;
-}
-body .navbar .actions-menu {
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  overflow: hidden;
-}
-body .navbar .show-menu {
-  width: 51px;
-  height: 70px;
-  cursor: pointer;
-}
-body .navbar .actions {
-  padding: 5px 0;
-  font-size: 15px;
-}
-body .navbar .actions:hover {
-  color: #1f6bb6;
+  color: #1C1C1C;
 }
 body footer {
   text-align: center;

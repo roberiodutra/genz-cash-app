@@ -5,11 +5,12 @@
   .userInfo
     @include mixin.container
     @include mixin.phone-only
-    box-shadow: 0 0 1rem variables.$night-blue
+    margin-top: 1rem
+    box-shadow: 0 0 0.5rem variables.$night-blue
     width: 100%
 
     & thead tr
-      font-size: 0.8rem
+      font-size: 0.9rem
       color: variables.$seashell3
 
     & th, td
@@ -17,19 +18,20 @@
 
     .username
       padding: 0.4rem 1rem
-      box-shadow: 0 0 1rem variables.$night-blue
+      box-shadow: 0 0 0.5rem variables.$night-blue
       button
         @include mixin.button
 
     .balance
       padding: 0.4rem 1rem
-      box-shadow: 0 0 1rem variables.$night-blue
+      box-shadow: 0 0 0.5rem variables.$night-blue
       @include mixin.flex-center
       justify-content: space-around
-      background-color: black
       button
         @include mixin.button
         margin: 0 1rem
+      span
+        font-size: 1.5rem
 
   .transaction-input-full
     position: fixed
@@ -61,7 +63,7 @@
     display: none
 
   .filter-actions
-    box-shadow: 0 0 1rem variables.$night-blue
+    box-shadow: 0 0 0.5rem variables.$night-blue
     @include mixin.container
     @include mixin.phone-only
     text-align: center
@@ -69,7 +71,7 @@
       display: none
       &:checked
         + .box
-          background-color: green
+          background-color: variables.$night-blue
           span
             color: white
             transform: translateY(10px)
@@ -80,7 +82,7 @@
     .box
       width: 100px
       height: 50px
-      background-color: white
+      background-color: variables.$details-color
       transition: all 250ms ease
       will-change: transition
       display: inline-block
@@ -98,7 +100,7 @@
         transition: all 300ms ease
         font-size: 1em
         user-select: none
-        color: green
+        color: variables.$seashell3
         &:before
           font-size: 0.8em
           font-family: FontAwesome
@@ -127,7 +129,7 @@
   .transactions-table
     border-collapse: collapse
     font-size: 1.4em
-    box-shadow: 0 0 1rem variables.$night-blue
+    box-shadow: 0 0 0.5rem variables.$night-blue
     width: 100%
     @include mixin.container
     @include mixin.phone-only
@@ -135,7 +137,7 @@
 
     & thead tr
       background-color: variables.$night-blue
-      color: variables.$seashell3
+      color: variables.$primary-color
       text-align: left
 
     & th, td
