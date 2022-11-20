@@ -38,7 +38,7 @@ export const PrivateRoute = () => {
             })
           );
           dispatch(setAccountId(validUser.accountId));
-          dispatch(setAccountBalance(+validUser.account.balance));
+          dispatch(setAccountBalance(+userAccount.balance));
         } else {
           removeUserFromLocalStorage();
           <Navigate to="/sign_in" />;
