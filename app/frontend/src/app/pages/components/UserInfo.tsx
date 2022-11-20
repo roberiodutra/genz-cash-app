@@ -1,6 +1,6 @@
 import { useAppSelector } from '../../store/hooks/useAppSelector';
 
-export default function Balance() {
+export default function UserInfo() {
   const { balance, username } = useAppSelector((store) => store.user);
   return (
     <table className="userInfo">

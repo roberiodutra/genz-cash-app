@@ -76,11 +76,11 @@ body .header .navbar-buttons:hover {
   color: #1f6bb6;
 }
 body .userInfo {
-  box-shadow: 0 0 1rem rgba(4, 41, 58, 0.6);
-  align-items: center;
   max-width: 720px;
   padding: 1.5rem 0;
   margin: 0 auto;
+  box-shadow: 0 0 1rem rgba(4, 41, 58, 0.6);
+  width: 100%;
 }
 @media (max-width: 479px) {
   body .userInfo {
@@ -137,7 +137,7 @@ body .userInfo .balance button {
 body .userInfo .balance button:hover {
   color: #1f6bb6;
 }
-body .questions-table {
+body .transactions-table {
   border-collapse: collapse;
   font-size: 1.4em;
   box-shadow: 0 0 1rem rgba(4, 41, 58, 0.6);
@@ -147,53 +147,49 @@ body .questions-table {
   margin: 0 auto;
 }
 @media (max-width: 479px) {
-  body .questions-table {
+  body .transactions-table {
     padding: 0.5rem;
     padding: 1.1rem;
   }
-  body .questions-table thead,
-body .questions-table tbody,
-body .questions-table th,
-body .questions-table td,
-body .questions-table tr {
+  body .transactions-table thead,
+body .transactions-table tbody,
+body .transactions-table th,
+body .transactions-table td,
+body .transactions-table tr {
     display: block;
   }
-  body .questions-table thead tr {
+  body .transactions-table thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
-  body .questions-table td:nth-last-child(1), body .questions-table td:nth-last-child(2) {
+  body .transactions-table td:nth-last-child(1), body .transactions-table td:nth-last-child(2) {
     display: none;
   }
 }
-body .questions-table thead tr {
+body .transactions-table thead tr {
   background-color: rgba(4, 41, 58, 0.6);
   color: #CDC5BF;
   text-align: left;
 }
-body .questions-table th, body .questions-table td {
+body .transactions-table th, body .transactions-table td {
   padding: 1.5rem 2.5rem;
 }
-body .questions-table tbody tr {
+body .transactions-table tbody tr {
   border-bottom: 0.06rem solid #CDC5BF;
 }
-body .questions-table tbody tr:nth-of-type(even) {
+body .transactions-table tbody tr:nth-of-type(even) {
   background-color: #CDC5BF;
 }
-body .questions-table tbody tr:last-of-type {
+body .transactions-table tbody tr:last-of-type {
   border-bottom: 0.12rem solid rgba(4, 41, 58, 0.6);
 }
-body .questions-table button {
+body .transactions-table button {
   all: unset;
   cursor: pointer;
 }
-body .questions-table button:hover {
+body .transactions-table button:hover {
   color: #1f6bb6;
-}
-body .questions-table img {
-  width: 2rem;
-  height: 2rem;
 }
 body .form {
   margin: 0 auto;

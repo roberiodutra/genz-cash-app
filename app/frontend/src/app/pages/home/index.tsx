@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import TransactionCard from './TransactionCard';
 import InputForTransactions from './InputForTransations';
-import Balance from '../components/Balance';
+import UserInfo from '../components/UserInfo';
 import { useAppSelector } from '../../store/hooks/useAppSelector';
 import TransactionsFilter from '../components/TransactionsFilter';
 import { ITransaction } from '../../store/transaction/interfaces/ITransactions';
@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <main>
       <Header />
-      <Balance />
+      <UserInfo />
       <InputForTransactions />
       <TransactionsFilter />
       <table className="transactions-table">

@@ -3,10 +3,10 @@
 
 @mixin section
   .userInfo
-    box-shadow: 0 0 1rem variables.$night-blue
-    align-items: center
     @include mixin.container
     @include mixin.phone-only
+    box-shadow: 0 0 1rem variables.$night-blue
+    width: 100%
 
     & thead tr
       font-size: 0.8rem
@@ -31,7 +31,7 @@
         @include mixin.button
         margin: 0 1rem
 
-  .questions-table
+  .transactions-table
     border-collapse: collapse
     font-size: 1.4em
     box-shadow: 0 0 1rem variables.$night-blue
@@ -59,7 +59,3 @@
 
     button
       @include mixin.button
-
-    img
-      width: 2rem
-      height: 2rem
