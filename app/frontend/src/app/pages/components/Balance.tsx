@@ -1,10 +1,30 @@
 import { useAppSelector } from '../../store/hooks/useAppSelector';
 
 export default function Balance() {
-  const { balance } = useAppSelector((store) => store.user);
+  const { balance, username } = useAppSelector((store) => store.user);
   return (
-    <section className="balance">
-      <h2>{balance}</h2>
-    </section>
+    <table className="userInfo">
+      <thead>
+        <tr>
+          <th>user</th>
+          <th>balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div className="username">
+              <h2>{`@${username}`}</h2>
+            </div>
+          </td>
+          <td>
+            <div className="balance">
+              <h2>{balance}</h2>
+              <button type="button">show</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   );
 }

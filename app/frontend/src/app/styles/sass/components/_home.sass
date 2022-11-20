@@ -2,6 +2,35 @@
 @use '../abstracts/mixin'
 
 @mixin section
+  .userInfo
+    box-shadow: 0 0 1rem variables.$night-blue
+    align-items: center
+    @include mixin.container
+    @include mixin.phone-only
+
+    & thead tr
+      font-size: 0.8rem
+      color: variables.$seashell3
+
+    & th, td
+      padding: 0.2rem 1rem
+
+    .username
+      padding: 0.4rem 1rem
+      box-shadow: 0 0 1rem variables.$night-blue
+      button
+        @include mixin.button
+
+    .balance
+      padding: 0.4rem 1rem
+      box-shadow: 0 0 1rem variables.$night-blue
+      @include mixin.flex-center
+      justify-content: space-around
+      background-color: black
+      button
+        @include mixin.button
+        margin: 0 1rem
+
   .questions-table
     border-collapse: collapse
     font-size: 1.4em

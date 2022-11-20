@@ -23,7 +23,7 @@ body .header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1280px;
+  max-width: 720px;
   padding: 1.5rem 0;
   margin: 0 auto;
 }
@@ -75,12 +75,74 @@ body .header .navbar-buttons {
 body .header .navbar-buttons:hover {
   color: #1f6bb6;
 }
+body .userInfo {
+  box-shadow: 0 0 1rem rgba(4, 41, 58, 0.6);
+  align-items: center;
+  max-width: 720px;
+  padding: 1.5rem 0;
+  margin: 0 auto;
+}
+@media (max-width: 479px) {
+  body .userInfo {
+    padding: 0.5rem;
+  }
+  body .userInfo thead,
+body .userInfo tbody,
+body .userInfo th,
+body .userInfo td,
+body .userInfo tr {
+    display: block;
+  }
+  body .userInfo thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  body .userInfo td:nth-last-child(1), body .userInfo td:nth-last-child(2) {
+    display: none;
+  }
+}
+body .userInfo thead tr {
+  font-size: 0.8rem;
+  color: #CDC5BF;
+}
+body .userInfo th, body .userInfo td {
+  padding: 0.2rem 1rem;
+}
+body .userInfo .username {
+  padding: 0.4rem 1rem;
+  box-shadow: 0 0 1rem rgba(4, 41, 58, 0.6);
+}
+body .userInfo .username button {
+  all: unset;
+  cursor: pointer;
+}
+body .userInfo .username button:hover {
+  color: #1f6bb6;
+}
+body .userInfo .balance {
+  padding: 0.4rem 1rem;
+  box-shadow: 0 0 1rem rgba(4, 41, 58, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+  background-color: black;
+}
+body .userInfo .balance button {
+  all: unset;
+  cursor: pointer;
+  margin: 0 1rem;
+}
+body .userInfo .balance button:hover {
+  color: #1f6bb6;
+}
 body .questions-table {
   border-collapse: collapse;
   font-size: 1.4em;
   box-shadow: 0 0 1rem rgba(4, 41, 58, 0.6);
   width: 100%;
-  max-width: 1280px;
+  max-width: 720px;
   padding: 1.5rem 0;
   margin: 0 auto;
 }
