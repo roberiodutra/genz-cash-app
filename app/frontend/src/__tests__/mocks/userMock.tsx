@@ -11,7 +11,8 @@ const memberUser = {
   account: {
     balance: '100.00',
   },
-  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9',
+  token:
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjcsInVzZXJuYW1lIjoicmljaGFyZCIsInBhc3N3b3JkIjoiYWdoc1Q1MzQiLCJhY2NvdW50SWQiOjI3LCJhY2NvdW50Ijp7ImJhbGFuY2UiOiIyMzUuNDkifSwiaWF0IjoxNjY5MDIzNzY2LCJleHAiOjE2NjkxMTAxNjZ9.5Nx6gU5i_M5kS5E7BBB2VQb6ZAqUAZLQOd3ie9sVIIY',
 };
 
 const updateUserAccount = {

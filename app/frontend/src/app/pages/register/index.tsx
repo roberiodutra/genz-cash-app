@@ -44,7 +44,6 @@ export default function Register() {
         }
       })
       .catch((error) => {
-        console.log('🚀 ~ onSubmitHandler ~ error', error);
         if (error && 'data' in error)
           dispatch(setFormError(error.data.message));
       });

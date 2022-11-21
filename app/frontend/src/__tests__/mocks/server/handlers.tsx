@@ -35,13 +35,13 @@ const handlers = [
   //   return res(ctx.status(code.OK));
   // }),
 
+  rest.get(`${BASE_URL}/user`, (_req, res, ctx) => {
+    return res(ctx.status(code.OK), ctx.json(getUserFromLocalStorage()));
+  }),
+
   rest.put(`${BASE_URL}/user/:id`, (_req, res, ctx) => {
     return res(ctx.status(code.OK));
   }),
-
-  // rest.get(`${BASE_URL}/user/:id`, (_req, res, ctx) => {
-  //   return res(ctx.status(code.OK), ctx.json(getUserFromLocalStorage()));
-  // }),
 ];
 
 export default handlers;

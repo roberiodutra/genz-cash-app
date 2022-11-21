@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 import { getUserFromLocalStorage } from '../../utils/localStorage';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { ITransaction } from '../../store/transaction/interfaces/ITransactions';
 import { accountApi } from '../../store/account/apiService';
 
@@ -13,21 +13,20 @@ export default function TransactionCard({ trans }: ITrans) {
   const [getAccountById] = accountApi.useGetAccountByIdMutation();
   const user = getUserFromLocalStorage();
   const [transactionUserName, setTransactionUserName] = useState('');
-  const [owner, setOwner] = useState(false);
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
-  const path = location.pathname;
 
   useEffect(() => {
     if (trans) {
       (async () => {
-        const uname = await getAccountById(
+        await getAccountById(
           user.id === trans?.debitedAccountId
             ? trans?.creditedAccountId
             : trans?.debitedAccountId
-        ).unwrap();
-        setTransactionUserName(uname.user.username);
+        )
+          .unwrap()
+          .then((data) => {
+            setTransactionUserName(data.user.username);
+          });
       })();
     }
   }, [trans]);
