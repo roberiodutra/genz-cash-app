@@ -1,5 +1,7 @@
 <h1 align="center">Genz Cash Backend</h1>
 
+<img align="center" alt="TS-React-APP" title="#TS-React-APP" src="src/assets/all-devices-black.png" />
+
 <br>
 
 <p align="center">API made with JS, TS, Node and Postgres 🤓</p>
@@ -56,20 +58,20 @@ Besides, it's good to have an editor to work with the code like [VSCode](https:/
 ### 🎲 Running the App
 
 ```bash
-# Install all dependencies for backend and frontend
-$ npm run install:all
-
 # Run or install the containers in docker, build the app and run db:migrate with this command:
 $ npm run compose:up
 
-# Run the application in development mode
-$ npm run dev
-
 # If no error occurred, the application should already be working.
+
+# acess frontend - <http://localhost:8000>
+# acess backend - <http://localhost:3001>
 
 # Some useful commands
 
 # Note: the application is already build and the tables have already been created in docker containers when doing the compose:up command, but if there is an error, use the individual commands.
+
+# Install all dependencies for backend and frontend
+$ npm run install:all
 
 # You can take down and clean docker with:
 $ npm run compose:down
@@ -82,6 +84,10 @@ $ npm run db:migrate
 
 # If you want some initial data, you can seed with:
 $ npm run db:seed
+
+# Tests 100%
+$ cd /app/backend
+$ npm run test
 
 # The server will start on port:3001 - access <http://localhost:3001>
 ```
@@ -141,5 +147,9 @@ $ npm install
 # Run the application in development mode
 $ npm run dev
 
-# The server will start on port:5173 - access <http://127.0.0.1:5173/>
+# Tests 100%
+$ cd app/frontend
+$ npm run test
+
+# The server will start on port:8000 - access <http://localhost:8000>
 ```

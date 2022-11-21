@@ -10,4 +10,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src/app/styles')
     }
   },
+  server: {
+    host: true,
+    port: 8000
+  },
 });

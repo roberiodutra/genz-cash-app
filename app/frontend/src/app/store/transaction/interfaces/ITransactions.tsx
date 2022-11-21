@@ -1,6 +1,6 @@
 export interface ITransaction {
   id?: number;
-  value: string;
+  value: number;
   createdAt?: string;
   debitedAccountId: number;
   creditedAccountId: number;

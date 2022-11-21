@@ -5,7 +5,7 @@ import { saveUserOnLocalStorage } from '../../../app/utils/localStorage';
 import { memberUser } from '../../mocks/userMock';
 import accountMock from '../../mocks/accountMock';
 
-describe('Header tests', () => {
+describe('Home tests', () => {
   const renderApp = (route: string) => renderWithRouter(<App />, { route });
 
   afterEach(cleanup);
