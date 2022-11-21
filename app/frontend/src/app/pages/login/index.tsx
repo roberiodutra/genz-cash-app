@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { userApi } from '../../store/user/apiService';
@@ -7,11 +7,19 @@ import Form from '../components/Form';
 import { UserType } from '../../types/UserType';
 import { useAppDispatch } from '../../store/hooks/useAppDispatch';
 import { setFormError } from '../../store/userActions/actionsSlice';
+import { getUserFromLocalStorage } from '../../utils/localStorage';
 
 export default function Login() {
-  const [loginUser] = userApi.useLoginUserMutation();
+  const [loginUser, { error }] = userApi.useLoginUserMutation();
+  const user = getUserFromLocalStorage();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user]);
 
   const onSubmitHandler = async (userInfo: UserType) => {
     await loginUser(userInfo)

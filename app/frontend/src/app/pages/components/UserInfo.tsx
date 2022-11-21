@@ -33,6 +33,7 @@ export default function UserInfo() {
                 <span>
                   <i
                     className={hideBalance ? 'fa fa-eye-slash' : 'fa fa-eye'}
+                    style={{ color: 'Teal' }}
                   ></i>
                 </span>
               </button>

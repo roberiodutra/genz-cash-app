@@ -107,6 +107,7 @@ export default function InputForTransactions() {
               id="value"
               type="number"
               max={balance}
+              step=".01"
               {...register('value')}
               required
             />

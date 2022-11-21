@@ -25,7 +25,7 @@ export default function Form({
     <form onSubmit={handleSubmit(onSubmitHandler)}>
       <fieldset>
         <legend>
-          <b>Sign Up</b>
+          <b>{path ? 'Sign In' : 'Sign Up'}</b>
         </legend>
 
         <div className="form-box">
@@ -58,7 +58,9 @@ export default function Form({
           <div className="error-message">{errors.password?.message}</div>
         </div>
 
-        <button type="submit">{path ? 'Login' : 'Register'}</button>
+        <button data-testid="sign_button" type="submit">
+          {path ? 'Login' : 'Register'}
+        </button>
       </fieldset>
     </form>
   );

@@ -84,7 +84,8 @@ body .userInfo {
   padding: 1.5rem 0;
   margin: 0 auto;
   margin-top: 1rem;
-  box-shadow: 0 0 0.5rem Teal;
+  border-bottom: none;
+  box-shadow: 0 -2px 8px Teal;
   width: 100%;
 }
 @media (max-width: 479px) {

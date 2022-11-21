@@ -1,8 +1,14 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-ignore
+import nodeFetch from 'node-fetch';
 import '@testing-library/jest-dom';
-// import server from './__tests__/mocks/server';
+import server from '../__tests__/mocks/server';
 
-// beforeAll(() => server.listen());
+global.fetch = nodeFetch;
+global.Request = nodeFetch.Request;
 
-// afterEach(() => server.resetHandlers());
+beforeAll(() => server.listen());
 
-// afterAll(() => server.close());
+afterEach(() => server.resetHandlers());
+
+afterAll(() => server.close());

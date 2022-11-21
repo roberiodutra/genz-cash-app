@@ -62,6 +62,9 @@ $ npm run install:all
 # Run or install the containers in docker, build the app and run db:migrate with this command:
 $ npm run compose:up
 
+# Run the application in development mode
+$ npm run dev
+
 # If no error occurred, the application should already be working.
 
 # Some useful commands
@@ -79,10 +82,6 @@ $ npm run db:migrate
 
 # If you want some initial data, you can seed with:
 $ npm run db:seed
-
-# Run the application in development mode
-$ npm run dev
-
 
 # The server will start on port:3001 - access <http://localhost:3001>
 ```
