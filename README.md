@@ -1,6 +1,6 @@
-<h1 align="center">Genz Cash Backend</h1>
+<img align="center" alt="TS-React-APP" title="#TS-React-APP" src="genz_cash.jpg" />
 
-<img align="center" alt="TS-React-APP" title="#TS-React-APP" src="src/assets/all-devices-black.png" />
+<h1 align="center">Genz Cash Backend</h1>
 
 <br>
 

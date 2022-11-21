@@ -7,6 +7,7 @@ services:
       - '8000'
     ports:
       - 8000:8000
+    working_dir: /app-frontend
     depends_on:
       backend:
         condition: service_healthy
@@ -22,6 +23,7 @@ services:
       - '3001'
     ports:
       - 3001:3001
+    working_dir: /app-backend
     command: npm run dev
     depends_on:
       db:
@@ -51,8 +53,8 @@ services:
       test: ["CMD-SHELL", "pg_isready", "-d", "genz_cash"]
       timeout: 10s
       retries: 5
-#     volumes:
-#       - pgdata:/var/lib/postgresql/data
-# volumes:
-#   pgdata:
-#     driver: local
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
+    driver: local
