@@ -14,11 +14,8 @@ const memberUser = {
   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9',
 };
 
-const invalidUser = {
-  id: '999999999999999999999',
-  password: '123456',
-  username: 'Tester',
-  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9',
+const updateUserAccount = {
+  accountId: '25',
 };
 
-export { loginUser, memberUser, invalidUser };
+export { loginUser, memberUser, updateUserAccount };

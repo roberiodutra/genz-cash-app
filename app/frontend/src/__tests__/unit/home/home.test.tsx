@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, waitFor } from '@testing-library/react';
 import App from '../../../app/App';
 import renderWithRouter from '../../utils/renderWithRouter';
-import questionMock from '../../mocks/questionMock';
+import questionMock from '../../mocks/accountMock';
 import server from '../../mocks/server';
 import { rest } from 'msw';
 

@@ -3,7 +3,7 @@ import App from '../../../app/App';
 import renderWithRouter from '../../utils/renderWithRouter';
 import { saveUser } from '../../../app/utils/localStorage';
 import { adminUser, invalidUser, memberUser } from '../../mocks/userMock';
-import questionMock from '../../mocks/questionMock';
+import questionMock from '../../mocks/accountMock';
 import server from '../../mocks/server';
 import { rest } from 'msw';
 

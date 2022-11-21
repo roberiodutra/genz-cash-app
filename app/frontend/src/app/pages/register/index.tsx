@@ -39,10 +39,12 @@ export default function Register() {
               id: data.id,
               accountId: account.id,
             });
+            navigate('/');
           }
         }
       })
       .catch((error) => {
+        console.log('🚀 ~ onSubmitHandler ~ error', error);
         if (error && 'data' in error)
           dispatch(setFormError(error.data.message));
       });
