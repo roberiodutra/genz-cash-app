@@ -14,7 +14,7 @@
 
 <h2 align="center">
 
-[![My Skills](https://skills.thijs.gg/icons?i=js,ts,nodejs,postgres)](https://skills.thijs.gg)
+[![My Skills](https://skills.thijs.gg/icons?i=js,ts,nodejs,postgres,docker)](https://skills.thijs.gg)
 
 </h2>
 
